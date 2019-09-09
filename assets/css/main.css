@@ -3610,4 +3610,6 @@ input, select, textarea {
 			margin-top: 0;
 			padding-top: 0;
 		}
-
+.content-custom{
+	pading-left:40px;
+}
