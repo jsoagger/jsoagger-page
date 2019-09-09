@@ -1,3 +1,15 @@
+Skip to content
+ jsoagger / jsoagger-page
+Learn Git and GitHub without any code!
+Using the Hello World guide, you’ll start a branch, write comments, and open a pull request.
+
+
+Code Issues 0 Pull requests 0 Projects 0 Wiki Security Pulse Community
+jsoagger-page/assets/css/main.css
+@rmvonji rmvonji Update main.css
+f83c5ae 5 minutes ago
+3612 lines (2874 sloc)  63.4 KB
+  
 @import url(fontawesome-all.min.css);
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,400italic,600italic|Roboto+Slab:400,700");
 
@@ -2076,12 +2088,13 @@ input, select, textarea {
 			border-radius: 0.375em;
 			display: block;
 		}
-           .image.custom-1 {
-		max-width: 50%;
-		width: 50%;
+        
+        .image.custom-1 {
+			max-width: 50%;
+			width: 50%;
 	        height:50%;
-		top:1em;
-          }
+        }
+        
 		.image.left, .image.right {
 			max-width: 40%;
 		}
@@ -3609,3 +3622,15 @@ input, select, textarea {
 			margin-top: 0;
 			padding-top: 0;
 		}
+© 2019 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
