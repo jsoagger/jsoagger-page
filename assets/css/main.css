@@ -2083,14 +2083,20 @@ input, select, textarea {
 	        height:50%;
         }
         
-		.image.left, .image.right {
+		.image.left, .image.right , .image.center{
 			max-width: 40%;
 		}
 
-			.image.left img, .image.right img {
+			.image.left img, .image.right img, .image.center img {
 				width: 100%;
 			}
 
+	.image.center{
+		margin:auto;
+		padding: 0 1.5em 1em 0;
+		top: 0.25em;
+	
+	}
 		.image.left {
 			float: left;
 			padding: 0 1.5em 1em 0;
@@ -3612,4 +3618,5 @@ input, select, textarea {
 		}
 .content-custom{
 	pading-left:40px;
+	margin: auto;
 }
