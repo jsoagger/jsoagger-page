@@ -3629,3 +3629,7 @@ input, select, textarea {
 	margin-right:auto;
 	display: block;
 }
+.mobile_solution{
+    width: 400px;
+    padding-right: 100px;
+}
