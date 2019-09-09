@@ -2076,7 +2076,12 @@ input, select, textarea {
 			border-radius: 0.375em;
 			display: block;
 		}
-
+           image.custom-1 {
+		max-width: 50%;
+		width: 50%;
+	        height:50%;
+		top:1em;
+          }
 		.image.left, .image.right {
 			max-width: 40%;
 		}
