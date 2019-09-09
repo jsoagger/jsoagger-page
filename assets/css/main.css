@@ -3624,3 +3624,8 @@ input, select, textarea {
 	padding-left:40px;
 	margin: auto;
 }
+.content-custom img {
+	margin-left:auto;
+	margin-right:auto;
+	display: block;
+}
