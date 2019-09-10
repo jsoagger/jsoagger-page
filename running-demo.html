@@ -191,28 +191,33 @@ networks:<br />
 									<header class="major">
 										<h2>Start services with docker-compose</h2>
 									</header>
-									<p class="markdown-code">docker-compose -f compose-dev.yaml up<p/>
+									<p class="markdown-code"><strong>docker-compose -f compose-dev.yaml up</strong><p/>
 									<p> Check services state by running 'docker ps", 4 services described above should be visible in result: </p>
 									<p class="markdown-code">
-										> docker ps<br />
+										> <strong>docker ps</strong><br />
 										jsoagger/soagg-manager:xxx<br />
 										jsoagger/soagg-foundation-srv:xxxx<br />
 										jsoagger/soagg-webdev:xxxx<br />
 										jsoagger/soagg-h2:xxxxx<br />
 									</p>
-									<hr class="major" />
 																		
 									<header class="major">
 										<h2>Load foundation datas</h2>
 									</header>
 									<p>
-										Before testing the application, datas and views must be uploaded to database. JSoagger has a container image named 'jsoagger/soagg-foundation-data', which is a one shot docker image that will load data to running backend service.<br />
+										Before testing the application, datas and views must be uploaded to database. JSoagger has a container image named 'jsoagger/soagg-foundation-data', which is a one shot docker image that will load data into running backend service.<br />
 										For that, run the following docker command:
 									<p/>
 									<p class="markdown-code">
-										> docker run --rm --name soagg-foundation-data --network=soagg_network -v $SPRING_CONFIG_LOCATION_MANAGER:/spring-config/ jsoagger/soagg-foundation-data:latest
+										<strong>> docker run --rm --name soagg-foundation-data --network=soagg_network -v $SPRING_CONFIG_LOCATION_MANAGER:/spring-config/ jsoagger/soagg-foundation-data:latest</strong>
 									</p>
-									<hr class="major" />									
+									
+									<header class="major">
+										<h2>Check loaded datas</h2>
+									</header>
+									<p>
+									
+									</p>
 									
 									<header class="major">
 										<h2>Browse</h2>
