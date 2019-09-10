@@ -38,11 +38,13 @@
 									
 									<ul>
 										<li>Setup environment and variables<br />
-											<strong>export DB_USER=sa</strong><br />
-											<strong>export DB_PASSWORD=</strong><br />											
-											<strong>export DATA_LOCATION=./_configs/data</strong><br />											
-											<strong>export SPRING_CONFIG_LOCATION_MANAGER=./_configs/manager</strong><br />																						
-											<strong>export SPRING_CONFIG_LOCATION_SRV=./_configs/server</strong><br />																																	
+										<pre><code>
+export DB_USER=sa
+export DB_PASSWORD=
+export DATA_LOCATION=./_configs/data
+export SPRING_CONFIG_LOCATION_MANAGER=./_configs/manager
+export SPRING_CONFIG_LOCATION_SRV=./_configs/server
+										</pre></code>
 										</li>
 										<br />
 										<li>Start services: <br/><strong>docker-compose -f compose-dev.yaml up</strong></li>										
