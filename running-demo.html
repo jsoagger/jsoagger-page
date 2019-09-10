@@ -22,7 +22,7 @@
 
 							<!-- Header -->
 								<header id="header">
-									<a href="running-demo.html" class="logo"><strong>JSOAGGER</strong> Running Demo application from docker hub</a>
+									<a href="running-demo.html" class="logo"><strong>JSOAGGER</strong> Running demo application</a>
 									<ul class="icons">
 										<li><a href="https://github.com/jsoagger" class="icon brands fa-github"><span class="label">Github</span></a></li>
 									</ul>
@@ -63,12 +63,82 @@
 										<h1>Compose services </h1>
 									</header>							
 									<header class="major">
-										<h2>H2 database</h2>
+										<h2>Create a compose script</h2>
 									</header>
-									<p>Create a new project with jsoagger maven archetype:<p/>
+									<p>Create a file named 'compose-demo-app.yaml' and paste following script inside<p/>
 									<p class="markdown-code">
-										> mvn archetype:generate -DarchetypeGroupId=io.github.jsoagger -DarchetypeArtifactId=jsoagger-fullstack-archetype <br />
-										  -DarchetypeVersion=LATEST -DgroupId=myprojectgroupid -DartifactId=myproject
+version: '3.7'
+services:
+
+  soagg-database:
+    image: jsoagger/soagg-h2:latest
+    restart: always
+    ports:
+      - 1521:1521
+      - 81:81
+    
+    volumes:
+       - $DATA_LOCATION:/opt/h2-data
+      
+    environment:
+      - DB_USER=$DB_USER
+      - DB_PASSWORD=$DB_PASSWORD
+    
+    networks:
+      - soagg_network  
+      
+                
+  soagg-foundation-srv:
+    image: jsoagger/soagg-foundation-srv:1.0.0-SNAPSHOT
+    restart: on-failure
+    ports:
+      - 8080:8080
+    
+    volumes:
+      - $SPRING_CONFIG_LOCATION_SRV:/spring-config/:ro
+      
+    depends_on:
+      - soagg-database
+          
+    networks:
+      - soagg_network  
+
+
+  soagg-manager:
+    image: jsoagger/soagg-manager:1.0.0-SNAPSHOT
+    container_name: soagg-manager_1
+    tty: true
+    stdin_open: true
+    environment:
+      - MANAGED_BACKEND_REST_URL=http://soagg-foundation-srv:8080/jsoagger
+
+    volumes:
+      - $SPRING_CONFIG_LOCATION_MANAGER:/spring-config/:ro
+
+    depends_on: 
+      - soagg-foundation-srv
+
+    networks:
+      - soagg_network  
+
+
+  soagg-webdev:
+    image: jsoagger/soagg-webdev:1.0.0-SNAPSHOT
+    container_name: soagg-webdev
+    ports:
+      - '3001:3000'
+      
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+                 
+    networks:
+      - soagg_network  
+                 
+networks:
+  soagg_network:
+    driver: "bridge"  
+  										
 									</p>
 									<hr class="major" />
 																		
