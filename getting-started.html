@@ -40,23 +40,18 @@
 									<header class="major">
 										<h2>Java 11 or later</h2>
 									</header>
-									<div class="posts">
-										<article>
-											<p>JSoagger needs Java version 11 or later:</p>
-											<p class="markdown-code">
-												>	java -version <br />
-													openjdk version "11.0.1" 2018-10-16<br />
-													OpenJDK Runtime Environment 18.9 (build 11.0.1+13)<br />
-													OpenJDK 64-Bit Server VM 18.9 (build 11.0.1+13, mixed mode)<br />
-											</p>
-										</article>
-									</div>
-							</section>
-							<section>
+									<p>JSoagger needs Java version 11 or later:</p>
+									<p class="markdown-code">
+											>	java -version <br />
+												openjdk version "11.0.1" 2018-10-16<br />
+												OpenJDK Runtime Environment 18.9 (build 11.0.1+13)<br />
+												OpenJDK 64-Bit Server VM 18.9 (build 11.0.1+13, mixed mode)<br />
+									</p>
+									<hr class="major" />
+																				
 									<header class="major">
 										<h2>Maven</h2>
 									</header>
-
 									<p>Download and install latest version of maven:</p>
 									<p class="markdown-code">
 										> mvn -version<br />
@@ -81,17 +76,6 @@
  													Experimental:      false<br />
 									</p>									
 							</section>
-							<section>
-									<header class="major">
-										<h2>Docker container</h2>
-									</header>
-									<div class="posts">
-										<article>
-											
-										</article>
-										
-									</div>
-							</section>
 							
 							<!-- Create project -->							
 							<section id="banner">
@@ -102,31 +86,26 @@
 									</div>
 							</section>
 							<section>
+									<header>
+											<h1>Create and build project</h1>
+										</header>
 									<header class="major">
 										<h2>Maven archetype</h2>
 									</header>
-									<div class="posts">
-										<article>
-											<p>Create a new project with jsoagger maven archetype:<p/>
-											<p class="markdown-code">
-											  > mvn archetype:generate -DarchetypeGroupId=io.github.jsoagger -DarchetypeArtifactId=jsoagger-fullstack-archetype <br />
-												-DarchetypeVersion=LATEST -DgroupId=myprojectgroupid -DartifactId=myproject
-											</p>
-										</article>
-									</div>
-							</section>
-							<section>
+									<p>Create a new project with jsoagger maven archetype:<p/>
+									<p class="markdown-code">
+										> mvn archetype:generate -DarchetypeGroupId=io.github.jsoagger -DarchetypeArtifactId=jsoagger-fullstack-archetype <br />
+										  -DarchetypeVersion=LATEST -DgroupId=myprojectgroupid -DartifactId=myproject
+									</p>
+									<hr class="major" />
+																		
 									<header class="major">
 										<h2>Build</h2>
 									</header>
-									<div class="posts">
-										<article>
-											<p>
-											mvn clean install -P docker,h2
-											</p
-										</article>
-										
-									</div>
+									<p>
+										> mvn clean install -P docker,h2
+									</p>
+									
 							</section>
 							<section>
 									<header class="major">
