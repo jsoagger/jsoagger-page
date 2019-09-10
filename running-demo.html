@@ -103,80 +103,80 @@ docker run --rm --name soagg-foundation-data --network=soagg_network -v $SPRING_
 										<h2>Create a compose script</h2>
 									</header>
 									<p>Create a file named 'compose-dev.yaml' and paste following script inside or download following file content <a>https://github.com/jsoagger/soagg-utils/blob/master/docker-compose/dev/compose-dev</a><p/>
-									<p class="markdown-code">
-version: '3.7'<br />
-services:<br />
+									<p><pre><code>
+version: '3.7'
+services:
 
-&nbsp;&nbsp;soagg-database:<br />
-&nbsp;&nbsp;&nbsp;&nbsp;image: jsoagger/soagg-h2:latest<br />
-&nbsp;&nbsp;&nbsp;&nbsp;restart: always<br />
-&nbsp;&nbsp;&nbsp;&nbsp;ports:<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 1521:1521<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 81:81<br />
+  soagg-database:
+    image: jsoagger/soagg-h2:latest
+    restart: always
+    ports:
+      - 1521:1521
+      - 81:81
     
-&nbsp;&nbsp;&nbsp;&nbsp;volumes:<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- $DATA_LOCATION:/opt/h2-data<br />
+    volumes:
+       - $DATA_LOCATION:/opt/h2-data
       
-&nbsp;&nbsp;&nbsp;&nbsp;environment:<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DB_USER=$DB_USER<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DB_PASSWORD=$DB_PASSWORD<br />
+    environment:
+      - DB_USER=$DB_USER
+      - DB_PASSWORD=$DB_PASSWORD
     
-&nbsp;&nbsp;&nbsp;&nbsp;networks:<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- soagg_network  <br />
-      <br />  
-     <br />          
-&nbsp;&nbsp;soagg-foundation-srv:<br />
-&nbsp;&nbsp;&nbsp;&nbsp;image: jsoagger/soagg-foundation-srv:latest<br />
-&nbsp;&nbsp;&nbsp;&nbsp;restart: on-failure<br />
-&nbsp;&nbsp;&nbsp;&nbsp;ports:<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 8080:8080<br />
-    
-&nbsp;&nbsp;&nbsp;&nbsp;volumes:<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- $SPRING_CONFIG_LOCATION_SRV:/spring-config/:ro<br />
+    networks:
+      - soagg_network  
       
-&nbsp;&nbsp;&nbsp;&nbsp;depends_on:<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- soagg-database<br />
+                
+  soagg-foundation-srv:
+    image: jsoagger/soagg-foundation-srv:latest
+    restart: on-failure
+    ports:
+      - 8080:8080
+    
+    volumes:
+      - $SPRING_CONFIG_LOCATION_SRV:/spring-config/:ro
+      
+    depends_on:
+      - soagg-database
           
-&nbsp;&nbsp;&nbsp;&nbsp;networks:<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- soagg_network  <br />
-     <br />     
-<br />
-&nbsp;&nbsp;soagg-manager:<br />
-&nbsp;&nbsp;&nbsp;&nbsp;image: jsoagger/soagg-manager:latest<br />
-&nbsp;&nbsp;&nbsp;&nbsp;container_name: soagg-manager_1<br />
-&nbsp;&nbsp;&nbsp;&nbsp;tty: true<br />
-&nbsp;&nbsp;&nbsp;&nbsp;stdin_open: true<br />
-&nbsp;&nbsp;&nbsp;&nbsp;environment:<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- MANAGED_BACKEND_REST_URL=http://soagg-foundation-srv:8080/jsoagger<br />
+    networks:
+      - soagg_network  
 
-&nbsp;&nbsp;&nbsp;&nbsp;volumes:<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- $SPRING_CONFIG_LOCATION_MANAGER:/spring-config/:ro<br />
 
-&nbsp;&nbsp;&nbsp;&nbsp;depends_on: <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- soagg-foundation-srv<br />
+  soagg-manager:
+    image: jsoagger/soagg-manager:latest
+    container_name: soagg-manager_1
+    tty: true
+    stdin_open: true
+    environment:
+      - MANAGED_BACKEND_REST_URL=http://soagg-foundation-srv:8080/jsoagger
 
-&nbsp;&nbsp;&nbsp;&nbsp;networks:<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- soagg_network  <br />
-<br />
-     <br />     
-&nbsp;&nbsp;soagg-webdev:<br />
-&nbsp;&nbsp;&nbsp;&nbsp;image: jsoagger/soagg-webdev:latest<br />
-&nbsp;&nbsp;&nbsp;&nbsp;container_name: soagg-webdev<br />
-&nbsp;&nbsp;&nbsp;&nbsp;ports:<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- '3001:3000'<br />
+    volumes:
+      - $SPRING_CONFIG_LOCATION_MANAGER:/spring-config/:ro
+
+    depends_on: 
+      - soagg-foundation-srv
+
+    networks:
+      - soagg_network  
+
+
+  soagg-webdev:
+    image: jsoagger/soagg-webdev:latest
+    container_name: soagg-webdev
+    ports:
+      - '3001:3000'
       
-&nbsp;&nbsp;&nbsp;&nbsp;environment:<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- NODE_ENV=development<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CHOKIDAR_USEPOLLING=true<br />
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
                  
-&nbsp;&nbsp;&nbsp;&nbsp;networks:<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- soagg_network  <br />
-               <br />
-networks:<br />
-&nbsp;&nbsp;soagg_network:<br />
-&nbsp;&nbsp;&nbsp;driver: "bridge"  <br />
-
-
+    networks:
+      - soagg_network  
+                 
+networks:
+  soagg_network:
+    driver: "bridge"  
+									</code></pre>
+									</p>
 									<p>Example of local folder structure of compose environment:</p>
 									<span class="image image.center object">
 										<img src="images/setenv.png" alt="" />
@@ -196,10 +196,11 @@ networks:<br />
 										<li>DATA_LOCATION: volume on the host where the database files will be saved.</li>
 									</ul>
 									
-									<p class="markdown-code">
-										> export DATA_LOCATION=./_configs/data<br />
-										> export DB_USER=sa<br />
-										> export DB_PASSWORD=
+									<p><pre><code>
+export DATA_LOCATION=./_configs/data<br />
+export DB_USER=sa<br />
+export DB_PASSWORD=
+									</code></pre>	
 									</p>	
 									
 									<header class="major">
@@ -209,8 +210,9 @@ networks:<br />
 									'soagg-foundation-srv' is the jsoagger backend server. Based on springboot, it will start an embedded tomcat server on port 8080.<br />
 									The volume under SPRING_CONFIG_LOCATION_SRV should contain the spring boot configuration file named 'application.properties'. It will be copied inside the image on startup, if missing, it will fail.
 									</p>
-									<p class="markdown-code">
-										> export SPRING_CONFIG_LOCATION_SRV=./_configs/server
+									<p><pre><code>
+export SPRING_CONFIG_LOCATION_SRV=./_configs/server
+									</code></pre>
 									</p>
 									
 									<header class="major">
@@ -220,8 +222,9 @@ networks:<br />
 									'soagg-manager' is the command line interface for managing jsoagger backend server. Built ith spring shell 2.0, it includes more than 60 commands.<br />
 									The volume under SPRING_CONFIG_LOCATION_MANAGER should contain the spring boot configuration file named 'application.properties'. It will be copied inside the image on startup, if missing, it will fail.									
 									</p>
-									<p class="markdown-code">
-										> export SPRING_CONFIG_LOCATION_MANAGER=./_configs/manager
+									<p><pre><code>
+export SPRING_CONFIG_LOCATION_MANAGER=./_configs/manager
+									</code></pre>
 									</p>		
 							</section>
 							
@@ -234,12 +237,16 @@ networks:<br />
 									</header>
 									<p class="markdown-code">docker-compose -f compose-dev.yaml up<p/>
 									<p> Check services state by running 'docker ps", 4 services described above should be visible in result: </p>
-									<p class="markdown-code">
-										> docker ps<br />
-										jsoagger/soagg-manager:xxx<br />
-										jsoagger/soagg-foundation-srv:xxxx<br />
-										jsoagger/soagg-webdev:xxxx<br />
-										jsoagger/soagg-h2:xxxxx<br />
+									<p >
+									<pre><code>
+> docker ps
+CONTAINER ID        IMAGE                           COMMAND                  CREATED              PORTS                                        NAMES
+d1be2be32527        jsoagger/soagg-manager          "/jsoagger-cli/entry…"   3 days ago                                                        soagg-manager_1
+0aa01c92fb54        jsoagger/soagg-foundation-srv   "java -XX:+UnlockExp…"   3 days ago            0.0.0.0:8080->8080/tcp                       dev_soagg-foundation-srv_1
+a9b5e2b614d6        jsoagger/soagg-h2:latest        "/bin/bash /root/ent…"   3 days ago            0.0.0.0:81->81/tcp, 0.0.0.0:1521->1521/tcp   dev_soagg-database_1
+8d4e8eaf7d10        jsoagger/soagg-webdev:latest    "npm start"              3 days ago            0.0.0.0:3001->3000/tcp                       soagg-webdev
+										
+									</code></pre>
 									</p>
 																		
 									<header class="major">
@@ -249,23 +256,26 @@ networks:<br />
 										Before testing the application, datas and views must be uploaded to database. JSoagger has a container image named 'jsoagger/soagg-foundation-data', which is a one shot docker image that will load data into running backend service.<br />
 										For that, run the following docker command:
 									<p/>
-									<p class="markdown-code">
-										> docker run --rm --name soagg-foundation-data --network=soagg_network -v $SPRING_CONFIG_LOCATION_MANAGER:/spring-config/ jsoagger/soagg-foundation-data:latest
+									<p>
+									<pre><code>
+docker run --rm --name soagg-foundation-data --network=soagg_network -v $SPRING_CONFIG_LOCATION_MANAGER:/spring-config/ jsoagger/soagg-foundation-data:latest
+									</code></pre>
 									</p>
 									
 									<header class="major">
 										<h2>Check loaded datas</h2>
 									</header>
-									<p class="markdown-code">
-										> docker exec -it xxxxx bash<br />
-										> [root@xxxxxxxxx /]# /runcli.sh<br />
-										> [http://soagg-foundation-srv:8080/jsoagger]> login epadmin epadmin<br />
-										> [http://soagg-foundation-srv:8080/jsoagger]> appversion-history<br />
-										<br />
+									<p>
+									<pre><code>
+> docker exec -it xxxxx bash
+> [root@xxxxxxxxx /]# /runcli.sh
+> [http://soagg-foundation-srv:8080/jsoagger]> login epadmin epadmin
+> [http://soagg-foundation-srv:8080/jsoagger]> appversion-history
+								
 										{pageElements=2.0, pageNumber=0.0, hasNextPage=false, totalPages=1.0, pageSize=2.0, hasPreviousPage=false, totalElements=2.0, __http_code=200}
 {"moduleType":"CODE_VERSION","lastModifiedDate":"2019-09-07 10:58:43","moduleHash":"","lastModifiedBy":"epadmin","moduleName":"jsoagger-core-business-services","label":"jsoagger-core-business-services","version":0.0,"installationOrder":1.0,"moduleDescription":"-","moduleVersion":"1.0.0-SNAPSHOT","id":"NjU0MTppby5naXRodWIuanNvYWdnZXIuY29yZS5tb2RlbC5hcHAuQXBwVmVyc2lvbkhpc3Rvcnk","status":"INSTALLED"}
 {"moduleType":"DATA_PATCH","lastModifiedDate":"2019-09-07 11:01:24","moduleHash":"no_hash","lastModifiedBy":"epadmin","moduleName":"jsoagger-foundation-data","label":"jsoagger-foundation-data","version":1.0,"installationOrder":2.0,"moduleDescription":"Foundation data patch","moduleVersion":"0.0.1","id":"NjU3Mzppby5naXRodWIuanNvYWdnZXIuY29yZS5tb2RlbC5hcHAuQXBwVmVyc2lvbkhpc3Rvcnk","status":"INSTALLED"}
-										<br />
+										</code></pre>
 									</p>
 									
 									<header class="major">
