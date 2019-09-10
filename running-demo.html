@@ -35,18 +35,26 @@
 									<header class="major">
 										<h2>Docker hub</h2>
 									</header>
-									<p>JSoagger needs Java version 11 or later:</p>
-									<p class="markdown-code">
-											>	java -version <br />
-												openjdk version "11.0.1" 2018-10-16<br />
-												OpenJDK Runtime Environment 18.9 (build 11.0.1+13)<br />
-												OpenJDK 64-Bit Server VM 18.9 (build 11.0.1+13, mixed mode)<br />
+									<p>
+										Docker Hub is the world's largest library and community for container images.<br />
+										All JSoagger official images are published under docker hub automatically from travic-CI. You can browse all of them from following url : https://hub.docker.com/u/jsoagger<br />
 									</p>
 									<hr class="major" />
 
 									<header class="major">
-										<h2>Docker desktop</h2>
-									</header>										
+										<h2>Docker compose</h2>
+									</header>
+									<p>
+										Compose is a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application's services.<br />
+										As JSoagger needs following services:<br />
+										
+										1. A database <br />
+										2. A Web UI <br />
+										3. A Command Line Interface <br />										
+										4. A Backend server<br />	
+										
+										We are going to use docker-compose to manage these services and run the application.									
+									</p>										
 							</section>
 							
 							<section>
@@ -187,6 +195,7 @@
 
 						</div>
 					</div>
+
 			</div>
 
 		<!-- Scripts -->
@@ -198,3 +207,4 @@
 
 	</body>
 </html>
+
