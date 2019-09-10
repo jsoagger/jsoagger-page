@@ -27,7 +27,22 @@
 										<li><a href="https://github.com/jsoagger" class="icon brands fa-github"><span class="label">Github</span></a></li>
 									</ul>
 								</header>
-							
+								
+							<section>
+									<header>
+										<h1>Summary </h1>
+									</header>							
+									<header class="major">
+										<h2>4 steps for running demo application </h2>
+									</header>
+									
+									<ul>
+										<li>Setup environment and variables</li>
+										<li>Start services: <strong>docker-compose -f compose-demo.yaml up</strong></li>										
+										<li>Load foundation datas: <strong>docker run --rm --name soagg-foundation-data --network=soagg_network -v $SPRING_CONFIG_LOCATION_MANAGER:/spring-config/ jsoagger/soagg-foundation-data:latest</strong></li>																				
+										<li>Browse: http://localhost:3000/jsoagger</li>
+									</ul>
+							</section>
 							<section>
 									<header>
 										<h1>Overview </h1>
@@ -177,18 +192,6 @@ networks:<br />
 									<p class="markdown-code">
 										> export SPRING_CONFIG_LOCATION_MANAGER=/path/to/location/folder/containing/application.properties/for/manager
 									</p>									
-									<hr class="major" />
-									
-									<header class="major">
-										<h2>Setup environment variables</h2>
-									</header>
-									<p>
-										Before starting the services, some environment variables must be setted.<br />
-										H2 database needs following variables:
-										<ul>
-											<li>DATA_LOCATION: volume on the host where the database files will be saved.</li>
-										</ul>
-									</p>						
 							</section>
 							
 							<section>
