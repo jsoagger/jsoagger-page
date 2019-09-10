@@ -258,7 +258,8 @@ a9b5e2b614d6        jsoagger/soagg-h2:latest        "/bin/bash /root/ent…"   3
 									<p/>
 									<p>
 									<pre><code>
-docker run --rm --name soagg-foundation-data --network=soagg_network -v $SPRING_CONFIG_LOCATION_MANAGER:/spring-config/ jsoagger/soagg-foundation-data:latest
+docker run --rm --name soagg-foundation-data --network=soagg_network -v $SPRING_CONFIG_LOCATION_MANAGER:/spring-config/
+ jsoagger/soagg-foundation-data:latest
 									</code></pre>
 									</p>
 									
@@ -272,9 +273,13 @@ docker run --rm --name soagg-foundation-data --network=soagg_network -v $SPRING_
 > [http://soagg-foundation-srv:8080/jsoagger]> login epadmin epadmin
 > [http://soagg-foundation-srv:8080/jsoagger]> appversion-history
 								
-										{pageElements=2.0, pageNumber=0.0, hasNextPage=false, totalPages=1.0, pageSize=2.0, hasPreviousPage=false, totalElements=2.0, __http_code=200}
-{"moduleType":"CODE_VERSION","lastModifiedDate":"2019-09-07 10:58:43","moduleHash":"","lastModifiedBy":"epadmin","moduleName":"jsoagger-core-business-services","label":"jsoagger-core-business-services","version":0.0,"installationOrder":1.0,"moduleDescription":"-","moduleVersion":"1.0.0-SNAPSHOT","id":"NjU0MTppby5naXRodWIuanNvYWdnZXIuY29yZS5tb2RlbC5hcHAuQXBwVmVyc2lvbkhpc3Rvcnk","status":"INSTALLED"}
-{"moduleType":"DATA_PATCH","lastModifiedDate":"2019-09-07 11:01:24","moduleHash":"no_hash","lastModifiedBy":"epadmin","moduleName":"jsoagger-foundation-data","label":"jsoagger-foundation-data","version":1.0,"installationOrder":2.0,"moduleDescription":"Foundation data patch","moduleVersion":"0.0.1","id":"NjU3Mzppby5naXRodWIuanNvYWdnZXIuY29yZS5tb2RlbC5hcHAuQXBwVmVyc2lvbkhpc3Rvcnk","status":"INSTALLED"}
+{pageElements=2.0, pageNumber=0.0, hasNextPage=false, totalPages=1.0, pageSize=2.0, hasPreviousPage=false, totalElements=2.0, __http_code=200}
+{"moduleType":"CODE_VERSION","lastModifiedDate":"2019-09-07 10:58:43","moduleHash":"","lastModifiedBy":"epadmin","moduleName":"jsoagger-core-business-services",
+"label":"jsoagger-core-business-services","version":0.0,"installationOrder":1.0,"moduleDescription":"-","moduleVersion":"1.0.0-SNAPSHOT",
+"id":"NjU0MTppby5naXRodWIuanNvYWdnZXIuY29yZS5tb2RlbC5hcHAuQXBwVmVyc2lvbkhpc3Rvcnk","status":"INSTALLED"}
+{"moduleType":"DATA_PATCH","lastModifiedDate":"2019-09-07 11:01:24","moduleHash":"no_hash","lastModifiedBy":"epadmin","moduleName":"jsoagger-foundation-data",
+"label":"jsoagger-foundation-data","version":1.0,"installationOrder":2.0,"moduleDescription":"Foundation data patch","moduleVersion":"0.0.1",
+"id":"NjU3Mzppby5naXRodWIuanNvYWdnZXIuY29yZS5tb2RlbC5hcHAuQXBwVmVyc2lvbkhpc3Rvcnk","status":"INSTALLED"}
 										</code></pre>
 									</p>
 									
