@@ -42,6 +42,7 @@
 										<li>Load foundation datas: <strong>docker run --rm --name soagg-foundation-data --network=soagg_network -v $SPRING_CONFIG_LOCATION_MANAGER:/spring-config/ jsoagger/soagg-foundation-data:latest</strong></li>																				
 										<li>Browse: http://localhost:3000/jsoagger</li>
 									</ul>
+									
 							</section>
 							<section>
 									<header>
@@ -151,10 +152,16 @@ services:<br />
 networks:<br />
 &nbsp;&nbsp;soagg_network:<br />
 &nbsp;&nbsp;&nbsp;driver: "bridge"  <br />
+
+
+									<p>Example of local folder structure of compose environment:</p>
+									<span class="image object">
+										<img src="images/setenv.png" alt="" />
+									</span>
   										
 									</p>
 									<header class="major">
-										<h3>soagg-webdev service (jsoagger/soagg-h2:latest)</h3>
+										<h3>soagg-webdev service</h3>
 									</header>
 									<p>
 									'soagg-webdev' is a customized h2 database server for jsoagger. It includes initialization script for database schema initialization.<br />
@@ -166,32 +173,32 @@ networks:<br />
 									</ul>
 									
 									<p class="markdown-code">
-										> export DATA_LOCATION=/path/to/an/initialy/empty/folder<br />
+										> export DATA_LOCATION=./_configs/data<br />
 										> export DB_USER=sa<br />
 										> export DB_PASSWORD=
 									</p>	
 									
 									<header class="major">
-										<h3>soagg-foundation-srv service (jsoagger/soagg-foundation-srv:latest)</h3>
+										<h3>soagg-foundation-srv service</h3>
 									</header>
 									<p>
 									'soagg-foundation-srv' is the jsoagger backend server. Based on springboot, it will start an embedded tomcat server on port 8080.<br />
 									The volume under SPRING_CONFIG_LOCATION_SRV should contain the spring boot configuration file named 'application.properties'. It will be copied inside the image on startup, if missing, it will fail.
 									</p>
 									<p class="markdown-code">
-										> export SPRING_CONFIG_LOCATION_SRV=/path/to/location/folder/containing/application.properties/for/server
+										> export SPRING_CONFIG_LOCATION_SRV=./_configs/server
 									</p>
 									
 									<header class="major">
-										<h3>soagg-manager service (jsoagger/soagg-manager:latest)</h3>
+										<h3>soagg-manager service</h3>
 									</header>
 									<p>
 									'soagg-manager' is the command line interface for managing jsoagger backend server. Built ith spring shell 2.0, it includes more than 60 commands.<br />
 									The volume under SPRING_CONFIG_LOCATION_MANAGER should contain the spring boot configuration file named 'application.properties'. It will be copied inside the image on startup, if missing, it will fail.									
 									</p>
 									<p class="markdown-code">
-										> export SPRING_CONFIG_LOCATION_MANAGER=/path/to/location/folder/containing/application.properties/for/manager
-									</p>									
+										> export SPRING_CONFIG_LOCATION_MANAGER=./_configs/manager
+									</p>		
 							</section>
 							
 							<section>
