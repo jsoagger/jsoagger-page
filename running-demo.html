@@ -68,12 +68,12 @@
 version: '3.7'<br />
 services:<br />
 
-  soagg-database:<br />
-    image: jsoagger/soagg-h2:latest<br />
-    restart: always<br />
-    ports:<br />
-      - 1521:1521<br />
-      - 81:81<br />
+&nbsp;&nbsp;  soagg-database:<br />
+&nbsp;&nbsp;&nbsp;image: jsoagger/soagg-h2:latest<br />
+&nbsp;&nbsp;&nbsp;restart: always<br />
+&nbsp;&nbsp;  ports:<br />
+&nbsp;&nbsp;&nbsp;- 1521:1521<br />
+&nbsp;&nbsp;&nbsp;- 81:81<br />
     
     volumes:<br />
        - $DATA_LOCATION:/opt/h2-data<br />
