@@ -60,7 +60,7 @@ docker-compose -f compose-dev.yaml up
 docker run --rm --name soagg-foundation-data --network=soagg_network -v $SPRING_CONFIG_LOCATION_MANAGER:/spring-config/<br /> jsoagger/soagg-foundation-data:latest</pre></code></li>																				
 										<br />			
 																	
-										<li>Browse: <br/><a>http://localhost:3000/jsoagger</a><br />
+										<li>Browse: <br/><a>http://localhost:3001/jsoagger</a><br />
 										<a>http://localhost:81/</a></li>
 									</ul>
 									<span class="image image.center object">
@@ -268,7 +268,7 @@ docker run --rm --name soagg-foundation-data --network=soagg_network -v $SPRING_
 									</header>
 									<p>
 									<pre><code>
-> docker exec -it xxxxx bash
+> docker exec -it replace_by_container_id bash
 > [root@xxxxxxxxx /]# /runcli.sh
 > [http://soagg-foundation-srv:8080/jsoagger]> login epadmin epadmin
 > [http://soagg-foundation-srv:8080/jsoagger]> appversion-history
@@ -286,7 +286,7 @@ docker run --rm --name soagg-foundation-data --network=soagg_network -v $SPRING_
 									<header class="major">
 										<h2>Browse</h2>
 									</header>
-									<p>Open a web browser and type url : http://localhost:3000/jsoagger</p>
+									<p>Open a web browser and type url : <a>http://localhost:3001/jsoagger</a></p>
 							</section>
 						</div>
 					</div>
