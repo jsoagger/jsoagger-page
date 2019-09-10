@@ -240,11 +240,11 @@ export SPRING_CONFIG_LOCATION_MANAGER=./_configs/manager
 									<p >
 									<pre><code>
 > docker ps
-CONTAINER ID        IMAGE                           COMMAND                  CREATED              PORTS                                        NAMES
-d1be2be32527        jsoagger/soagg-manager          "/jsoagger-cli/entry…"   3 days ago                                                        soagg-manager_1
-0aa01c92fb54        jsoagger/soagg-foundation-srv   "java -XX:+UnlockExp…"   3 days ago            0.0.0.0:8080->8080/tcp                       dev_soagg-foundation-srv_1
-a9b5e2b614d6        jsoagger/soagg-h2:latest        "/bin/bash /root/ent…"   3 days ago            0.0.0.0:81->81/tcp, 0.0.0.0:1521->1521/tcp   dev_soagg-database_1
-8d4e8eaf7d10        jsoagger/soagg-webdev:latest    "npm start"              3 days ago            0.0.0.0:3001->3000/tcp                       soagg-webdev
+CONTAINER ID        IMAGE                           COMMAND                  PORTS
+d1be2be32527        jsoagger/soagg-manager          "/jsoagger-cli/entry…"    
+0aa01c92fb54        jsoagger/soagg-foundation-srv   "java -XX:+UnlockExp…"  0.0.0.0:8080->8080/tcp
+a9b5e2b614d6        jsoagger/soagg-h2:latest        "/bin/bash /root/ent…"  0.0.0.0:81->81/tcp, 0.0.0.0:1521->1521/tcp
+8d4e8eaf7d10        jsoagger/soagg-webdev:latest    "npm start"             0.0.0.0:3001->3000/tcp 
 										
 									</code></pre>
 									</p>
