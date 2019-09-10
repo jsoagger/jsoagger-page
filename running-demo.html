@@ -37,7 +37,13 @@
 									</header>
 									
 									<ul>
-										<li>Setup environment and variables</li>
+										<li>Setup environment and variables<br />
+											<strong>export DB_USER=sa</strong><br />
+											<strong>export DB_PASSWORD=</strong><br />											
+											<strong>export DATA_LOCATION=/path/to/folder</strong><br />											
+											<strong>export SPRING_CONFIG_LOCATION_MANAGER=/path/another/folder</strong><br />																						
+											<strong>export SPRING_CONFIG_LOCATION_SRV=/path/another/folder</strong><br />																																	
+										</li>
 										<li>Start services: <br/><strong>docker-compose -f compose-dev.yaml up</strong></li>										
 										<br />										
 										<li>Load foundation datas: <br/><strong>docker run --rm --name soagg-foundation-data --network=soagg_network -v $SPRING_CONFIG_LOCATION_MANAGER:/spring-config/ jsoagger/soagg-foundation-data:latest</strong></li>																				
