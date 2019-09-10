@@ -192,14 +192,14 @@ networks:<br />
 										<h2>Start services with docker-compose</h2>
 									</header>
 									<p class="markdown-code">docker-compose -f compose-dev.yaml up<p/>
-									<p> Check services state: </p>
+									<p> Check services state by running following command: </p>
 									<p class="markdown-code">
-										> docker ps
-CONTAINER ID        IMAGE                                          COMMAND                  NAMES
-d1be2be32527        jsoagger/soagg-manager:xxx          "/jsoagger-cli/entry…"   soagg-manager_1
-0aa01c92fb54        jsoagger/soagg-foundation-srv:xxx   "java -XX:+UnlockExp…"   dev_soagg-foundation-srv_1
-a9b5e2b614d6        jsoagger/soagg-h2:xxx               "/bin/bash /root/ent…"   dev_soagg-database_1
-8d4e8eaf7d10        jsoagger/soagg-webdev:xxx           "npm start"              soagg-webdev
+										> docker ps<br />
+CONTAINER ID        IMAGE                                          COMMAND                  NAMES<br />
+d1be2be32527        jsoagger/soagg-manager:xxx          "/jsoagger-cli/entry…"   soagg-manager_1<br />
+0aa01c92fb54        jsoagger/soagg-foundation-srv:xxx   "java -XX:+UnlockExp…"   dev_soagg-foundation-srv_1<br />
+a9b5e2b614d6        jsoagger/soagg-h2:xxx               "/bin/bash /root/ent…"   dev_soagg-database_1<br />
+8d4e8eaf7d10        jsoagger/soagg-webdev:xxx           "npm start"              soagg-webdev<br />
 
 									</p>
 									<hr class="major" />
