@@ -87,7 +87,7 @@ services:<br />
       <br />  
      <br />          
 &nbsp;&nbsp;soagg-foundation-srv:<br />
-&nbsp;&nbsp;&nbsp;&nbsp;image: jsoagger/soagg-foundation-srv:1.0.0-SNAPSHOT<br />
+&nbsp;&nbsp;&nbsp;&nbsp;image: jsoagger/soagg-foundation-srv:latest<br />
 &nbsp;&nbsp;&nbsp;&nbsp;restart: on-failure<br />
 &nbsp;&nbsp;&nbsp;&nbsp;ports:<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 8080:8080<br />
@@ -103,7 +103,7 @@ services:<br />
      <br />     
 <br />
 &nbsp;&nbsp;soagg-manager:<br />
-&nbsp;&nbsp;&nbsp;&nbsp;image: jsoagger/soagg-manager:1.0.0-SNAPSHOT<br />
+&nbsp;&nbsp;&nbsp;&nbsp;image: jsoagger/soagg-manager:latest<br />
 &nbsp;&nbsp;&nbsp;&nbsp;container_name: soagg-manager_1<br />
 &nbsp;&nbsp;&nbsp;&nbsp;tty: true<br />
 &nbsp;&nbsp;&nbsp;&nbsp;stdin_open: true<br />
@@ -121,7 +121,7 @@ services:<br />
 <br />
      <br />     
 &nbsp;&nbsp;soagg-webdev:<br />
-&nbsp;&nbsp;&nbsp;&nbsp;image: jsoagger/soagg-webdev:1.0.0-SNAPSHOT<br />
+&nbsp;&nbsp;&nbsp;&nbsp;image: jsoagger/soagg-webdev:latest<br />
 &nbsp;&nbsp;&nbsp;&nbsp;container_name: soagg-webdev<br />
 &nbsp;&nbsp;&nbsp;&nbsp;ports:<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- '3001:3000'<br />
@@ -138,9 +138,15 @@ networks:<br />
 &nbsp;&nbsp;&nbsp;driver: "bridge"  <br />
   										
 									</p>
+									<header class="major">
+										<h3>soagg-database service ( jsoagger/soagg-h2:latest)</h3>
+									</header>
+									<p>
+									
+									</p>
+									
 									<hr class="major" />
 																		
-
 									<header class="major">
 										<h2>Foundation microservice</h2>
 									</header>
