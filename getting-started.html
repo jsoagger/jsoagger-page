@@ -49,7 +49,7 @@
 									<header class="major">
 										<h2>Maven</h2>
 									</header>
-									<p>Download and install latest version of maven</p>
+									<p>Download and install latest version of maven.</p>
 									<p>
 									<pre><code>
 > mvn -version
@@ -62,7 +62,7 @@
 									<header class="major">
 										<h2>Docker container</h2>
 									</header>
-									<p>Download and install latest version of docker desktop for your OS.</p>
+									<p>Download and install latest version of docker desktop for your OS <a>https://www.docker.com</a>.</p>
 									<p>
 									<pre><code>
 > docker version
@@ -85,7 +85,7 @@
 									<header class="major">
 										<h2>Create project</h2>
 									</header>
-									<p>Create a new project with jsoagger maven archetype:<p/>
+									<p>Create a new project with jsoagger maven archetype<p/>
 									<p>
 									<pre><code>
 > mvn archetype:generate -DarchetypeGroupId=io.github.jsoagger -DarchetypeArtifactId=jsoagger-fullstack-archetype
@@ -97,22 +97,18 @@
 									<header class="major">
 										<h2>Build</h2>
 									</header>
-									<p>
 									<pre><code>
 > cd myproject
 > mvn clean install -P docker,h2
 									</code></pre>										   																							  										
-									</p>
 									<hr class="major" />									
 
 									<header class="major">
 										<h2>Run</h2>
 									</header>
-									<p>
 									<pre><code>
-> docker-compose -f compose-dev up
-									</code></pre>							
-									</p>												   																							  																			
+> docker-compose -f compose-dev.yaml up
+									</code></pre>																		   																							  																			
 									<hr class="major" />									
 									
 									<header class="major">
