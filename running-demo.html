@@ -40,9 +40,9 @@
 										<li>Setup environment and variables<br />
 											<strong>export DB_USER=sa</strong><br />
 											<strong>export DB_PASSWORD=</strong><br />											
-											<strong>export DATA_LOCATION=/path/to/folder</strong><br />											
-											<strong>export SPRING_CONFIG_LOCATION_MANAGER=/path/to/a/folder</strong><br />																						
-											<strong>export SPRING_CONFIG_LOCATION_SRV=/path/to/a/folder</strong><br />																																	
+											<strong>export DATA_LOCATION=./_configs/data</strong><br />											
+											<strong>export SPRING_CONFIG_LOCATION_MANAGER=./_configs/manager</strong><br />																						
+											<strong>export SPRING_CONFIG_LOCATION_SRV=./_configs/server</strong><br />																																	
 										</li>
 										<br />
 										<li>Start services: <br/><strong>docker-compose -f compose-dev.yaml up</strong></li>										
@@ -88,7 +88,7 @@
 									<header class="major">
 										<h2>Create a compose script</h2>
 									</header>
-									<p>Create a file named 'compose-dev-app.yaml' and paste following script inside or download following file content <a>https://github.com/jsoagger/soagg-utils/blob/master/docker-compose/dev/compose-dev</a><p/>
+									<p>Create a file named 'compose-dev.yaml' and paste following script inside or download following file content <a>https://github.com/jsoagger/soagg-utils/blob/master/docker-compose/dev/compose-dev</a><p/>
 									<p class="markdown-code">
 version: '3.7'<br />
 services:<br />
