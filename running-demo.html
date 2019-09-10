@@ -143,23 +143,40 @@ networks:<br />
 									</header>
 									<p>
 									'soagg-webdev' is a customized h2 database server for jsoagger. It includes initialization script for database schema initialization.<br />
-									H2 console can be browsed at following url: htt://localhost:81
+									H2 console can be browsed at following url: htt://localhost:81.<br />
 									</p>
+									H2 database needs following variables:
+									<ul>
+										<li>DATA_LOCATION: volume on the host where the database files will be saved.</li>
+									</ul>
+									
+									<p class="markdown-code">
+										> export DATA_LOCATION=/path/to/an/initialy/empty/folder<br />
+										> export DB_USER=sa<br />
+										> export DB_PASSWORD=
+									</p>	
 									
 									<header class="major">
 										<h3>soagg-foundation-srv service (jsoagger/soagg-foundation-srv:latest)</h3>
 									</header>
 									<p>
-									'soagg-foundation-srv' is the jsoagger backend server. Based on springboot, it will start an embedded tomcat server on port 8080.
+									'soagg-foundation-srv' is the jsoagger backend server. Based on springboot, it will start an embedded tomcat server on port 8080.<br />
+									The volume under SPRING_CONFIG_LOCATION_SRV should contain the spring boot configuration file named 'application.properties'. It will be copied inside the image on startup, if missing, it will fail.
+									</p>
+									<p class="markdown-code">
+										> export SPRING_CONFIG_LOCATION_SRV=/path/to/location/folder/containing/application.properties/for/server
 									</p>
 									
 									<header class="major">
 										<h3>soagg-manager service (jsoagger/soagg-manager:latest)</h3>
 									</header>
 									<p>
-									'soagg-manager' is the command line interface for managing jsoagger backend server. Built from spring shell 2.0, it includes almost 60 commands.
+									'soagg-manager' is the command line interface for managing jsoagger backend server. Built ith spring shell 2.0, it includes more than 60 commands.<br />
+									The volume under SPRING_CONFIG_LOCATION_MANAGER should contain the spring boot configuration file named 'application.properties'. It will be copied inside the image on startup, if missing, it will fail.									
 									</p>
-									
+									<p class="markdown-code">
+										> export SPRING_CONFIG_LOCATION_MANAGER=/path/to/location/folder/containing/application.properties/for/manager
+									</p>									
 									<hr class="major" />
 									
 									<header class="major">
@@ -169,26 +186,9 @@ networks:<br />
 										Before starting the services, some environment variables must be setted.<br />
 										H2 database needs following variables:
 										<ul>
-											<li>DATA_LOCATION: volume on the host where the database files will be saved. The schema will be automatically generated if the folder is empty</li>
-											<li>DB_USER: should be 'sa'</li>
-											<li>DB_PASSWORD: should be empty</li>										
+											<li>DATA_LOCATION: volume on the host where the database files will be saved.</li>
 										</ul>
-									</p>
-									<p class="markdown-code">
-										> export DATA_LOCATION=/path/to/an/initialy/empty/folder<br />
-										> export DB_USER=sa<br />
-										> export DB_PASSWORD=
-									</p>
-									
-									Spring-boot behind 'soagg-foundation-srv' needs an external 'application.properties' file:
-									<p class="markdown-code">
-										> export SPRING_CONFIG_LOCATION_SRV=/path/to/location/folder/containing/application.properties/for/server
-									</p>
-									
-									Spring-boot behind 'soagg-foundation-srv' needs an external 'application.properties' file. The location must be different from the server one:									
-									<p class="markdown-code">
-										> export SPRING_CONFIG_LOCATION_MANAGER=/path/to/location/folder/containing/application.properties/for/manager
-									</p>
+									</p>						
 							</section>
 							
 							<section>
