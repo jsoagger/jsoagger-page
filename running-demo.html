@@ -52,7 +52,6 @@
 											<li>Command Line Interface <br /></li>									
 											<li>Backend server<br /></li>	
 										</ul>
-										<br />
 										We are going to use docker-compose to manage these services and run the application.
 									</p>																		
 							</section>
@@ -66,77 +65,76 @@
 									</header>
 									<p>Create a file named 'compose-demo-app.yaml' and paste following script inside<p/>
 									<p class="markdown-code">
-version: '3.7'
-services:
+version: '3.7'<br />
+services:<br />
 
-  soagg-database:
-    image: jsoagger/soagg-h2:latest
-    restart: always
-    ports:
-      - 1521:1521
-      - 81:81
+  soagg-database:<br />
+    image: jsoagger/soagg-h2:latest<br />
+    restart: always<br />
+    ports:<br />
+      - 1521:1521<br />
+      - 81:81<br />
     
-    volumes:
-       - $DATA_LOCATION:/opt/h2-data
+    volumes:<br />
+       - $DATA_LOCATION:/opt/h2-data<br />
       
-    environment:
-      - DB_USER=$DB_USER
-      - DB_PASSWORD=$DB_PASSWORD
+    environment:<br />
+      - DB_USER=$DB_USER<br />
+      - DB_PASSWORD=$DB_PASSWORD<br />
     
-    networks:
-      - soagg_network  
-      
-                
-  soagg-foundation-srv:
-    image: jsoagger/soagg-foundation-srv:1.0.0-SNAPSHOT
-    restart: on-failure
-    ports:
-      - 8080:8080
+    networks:<br />
+      - soagg_network  <br />
+      <br />          
+  soagg-foundation-srv:<br />
+    image: jsoagger/soagg-foundation-srv:1.0.0-SNAPSHOT<br />
+    restart: on-failure<br />
+    ports:<br />
+      - 8080:8080<br />
     
-    volumes:
-      - $SPRING_CONFIG_LOCATION_SRV:/spring-config/:ro
+    volumes:<br />
+      - $SPRING_CONFIG_LOCATION_SRV:/spring-config/:ro<br />
       
-    depends_on:
-      - soagg-database
+    depends_on:<br />
+      - soagg-database<br />
           
-    networks:
-      - soagg_network  
+    networks:<br />
+      - soagg_network  <br />
 
+<br />
+  soagg-manager:<br />
+    image: jsoagger/soagg-manager:1.0.0-SNAPSHOT<br />
+    container_name: soagg-manager_1<br />
+    tty: true<br />
+    stdin_open: true<br />
+    environment:<br />
+      - MANAGED_BACKEND_REST_URL=http://soagg-foundation-srv:8080/jsoagger<br />
 
-  soagg-manager:
-    image: jsoagger/soagg-manager:1.0.0-SNAPSHOT
-    container_name: soagg-manager_1
-    tty: true
-    stdin_open: true
-    environment:
-      - MANAGED_BACKEND_REST_URL=http://soagg-foundation-srv:8080/jsoagger
+    volumes:<br />
+      - $SPRING_CONFIG_LOCATION_MANAGER:/spring-config/:ro<br />
 
-    volumes:
-      - $SPRING_CONFIG_LOCATION_MANAGER:/spring-config/:ro
+    depends_on: <br />
+      - soagg-foundation-srv<br />
 
-    depends_on: 
-      - soagg-foundation-srv
+    networks:<br />
+      - soagg_network  <br />
+<br />
 
-    networks:
-      - soagg_network  
-
-
-  soagg-webdev:
-    image: jsoagger/soagg-webdev:1.0.0-SNAPSHOT
-    container_name: soagg-webdev
-    ports:
-      - '3001:3000'
+  soagg-webdev:<br />
+    image: jsoagger/soagg-webdev:1.0.0-SNAPSHOT<br />
+    container_name: soagg-webdev<br />
+    ports:<br />
+      - '3001:3000'<br />
       
-    environment:
-      - NODE_ENV=development
-      - CHOKIDAR_USEPOLLING=true
+    environment:<br />
+      - NODE_ENV=development<br />
+      - CHOKIDAR_USEPOLLING=true<br />
                  
-    networks:
-      - soagg_network  
+    networks:<br />
+      - soagg_network  <br />
                  
-networks:
-  soagg_network:
-    driver: "bridge"  
+networks:<br />
+  soagg_network:<br />
+    driver: "bridge"  <br />
   										
 									</p>
 									<hr class="major" />
