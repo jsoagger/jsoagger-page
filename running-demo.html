@@ -78,63 +78,64 @@ services:<br />
 &nbsp;&nbsp;&nbsp;&nbsp;volumes:<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- $DATA_LOCATION:/opt/h2-data<br />
       
-    environment:<br />
-      - DB_USER=$DB_USER<br />
-      - DB_PASSWORD=$DB_PASSWORD<br />
+&nbsp;&nbsp;&nbsp;&nbsp;environment:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DB_USER=$DB_USER<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DB_PASSWORD=$DB_PASSWORD<br />
     
-    networks:<br />
-      - soagg_network  <br />
-      <br />          
-  soagg-foundation-srv:<br />
-    image: jsoagger/soagg-foundation-srv:1.0.0-SNAPSHOT<br />
-    restart: on-failure<br />
-    ports:<br />
-      - 8080:8080<br />
+&nbsp;&nbsp;&nbsp;&nbsp;networks:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- soagg_network  <br />
+      <br />  
+     <br />          
+&nbsp;&nbsp;soagg-foundation-srv:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;image: jsoagger/soagg-foundation-srv:1.0.0-SNAPSHOT<br />
+&nbsp;&nbsp;&nbsp;&nbsp;restart: on-failure<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ports:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 8080:8080<br />
     
-    volumes:<br />
-      - $SPRING_CONFIG_LOCATION_SRV:/spring-config/:ro<br />
+&nbsp;&nbsp;&nbsp;&nbsp;volumes:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- $SPRING_CONFIG_LOCATION_SRV:/spring-config/:ro<br />
       
-    depends_on:<br />
-      - soagg-database<br />
+&nbsp;&nbsp;&nbsp;&nbsp;depends_on:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- soagg-database<br />
           
-    networks:<br />
-      - soagg_network  <br />
+&nbsp;&nbsp;&nbsp;&nbsp;networks:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- soagg_network  <br />
 
 <br />
-  soagg-manager:<br />
-    image: jsoagger/soagg-manager:1.0.0-SNAPSHOT<br />
-    container_name: soagg-manager_1<br />
-    tty: true<br />
-    stdin_open: true<br />
-    environment:<br />
-      - MANAGED_BACKEND_REST_URL=http://soagg-foundation-srv:8080/jsoagger<br />
+&nbsp;&nbsp;soagg-manager:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;image: jsoagger/soagg-manager:1.0.0-SNAPSHOT<br />
+&nbsp;&nbsp;&nbsp;&nbsp;container_name: soagg-manager_1<br />
+&nbsp;&nbsp;&nbsp;&nbsp;tty: true<br />
+&nbsp;&nbsp;&nbsp;&nbsp;stdin_open: true<br />
+&nbsp;&nbsp;&nbsp;&nbsp;environment:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- MANAGED_BACKEND_REST_URL=http://soagg-foundation-srv:8080/jsoagger<br />
 
-    volumes:<br />
-      - $SPRING_CONFIG_LOCATION_MANAGER:/spring-config/:ro<br />
+&nbsp;&nbsp;&nbsp;&nbsp;volumes:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- $SPRING_CONFIG_LOCATION_MANAGER:/spring-config/:ro<br />
 
-    depends_on: <br />
-      - soagg-foundation-srv<br />
+&nbsp;&nbsp;&nbsp;&nbsp;depends_on: <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- soagg-foundation-srv<br />
 
-    networks:<br />
-      - soagg_network  <br />
+&nbsp;&nbsp;&nbsp;&nbsp;networks:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- soagg_network  <br />
 <br />
 
-  soagg-webdev:<br />
-    image: jsoagger/soagg-webdev:1.0.0-SNAPSHOT<br />
-    container_name: soagg-webdev<br />
-    ports:<br />
-      - '3001:3000'<br />
+&nbsp;&nbsp;soagg-webdev:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;image: jsoagger/soagg-webdev:1.0.0-SNAPSHOT<br />
+&nbsp;&nbsp;&nbsp;&nbsp;container_name: soagg-webdev<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ports:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- '3001:3000'<br />
       
-    environment:<br />
-      - NODE_ENV=development<br />
-      - CHOKIDAR_USEPOLLING=true<br />
+&nbsp;&nbsp;&nbsp;&nbsp;environment:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- NODE_ENV=development<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CHOKIDAR_USEPOLLING=true<br />
                  
-    networks:<br />
-      - soagg_network  <br />
+&nbsp;&nbsp;&nbsp;&nbsp;networks:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- soagg_network  <br />
                  
 networks:<br />
-  soagg_network:<br />
-    driver: "bridge"  <br />
+&nbsp;&nbsp;soagg_network:<br />
+&nbsp;&nbsp;&nbsp;driver: "bridge"  <br />
   										
 									</p>
 									<hr class="major" />
