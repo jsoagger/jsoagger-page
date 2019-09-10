@@ -27,17 +27,236 @@
 										<li><a href="https://github.com/jsoagger" class="icon brands fa-github"><span class="label">Github</span></a></li>
 									</ul>
 								</header>
-							
-							<section id="banner">
-									<div class="content">
-										<header>
-											<h1>Demo application with docker compose</h1>
-										</header>
-										<p>mvn archetype:generate -DarchetypeGroupId=io.github.jsoagger -DarchetypeArtifactId=jsoagger-fullstack-archetype  <br /> -DarchetypeVersion=LATEST -DgroupId=myprojectgroupid  -DartifactId=myproject</p>
-										<ul class="actions">
+								
+							<section>
+									<header>
+										<h1>Summary </h1>
+									</header>							
+									<header class="major">
+										<h2>4 steps for running demo application </h2>
+									</header>
+									
+									<ul>
+										<li>Setup environment and variables<br />
+											<strong>export DB_USER=sa</strong><br />
+											<strong>export DB_PASSWORD=</strong><br />											
+											<strong>export DATA_LOCATION=/path/to/folder</strong><br />											
+											<strong>export SPRING_CONFIG_LOCATION_MANAGER=/path/to/a/folder</strong><br />																						
+											<strong>export SPRING_CONFIG_LOCATION_SRV=/path/to/a/folder</strong><br />																																	
+										</li>
+										<br />
+										<li>Start services: <br/><strong>docker-compose -f compose-dev.yaml up</strong></li>										
+										<br />										
+										<li>Load foundation datas: <br/><strong>docker run --rm --name soagg-foundation-data --network=soagg_network -v $SPRING_CONFIG_LOCATION_MANAGER:/spring-config/ jsoagger/soagg-foundation-data:latest</strong></li>																				
+										<br />										
+										<li>Browse: <br/><a>http://localhost:3000/jsoagger</a></li>
+									</ul>
+									
+							</section>
+							<section>
+									<header>
+										<h1>Overview </h1>
+									</header>
+									<header class="major">
+										<h2>Docker hub</h2>
+									</header>
+									<p>
+										Docker Hub is the world's largest library and community for container images.<br />
+										All JSoagger official images are published under docker hub automatically from travic-CI. You can browse all of them from following url : <a>https://hub.docker.com/u/jsoagger</a><br />
+									</p>
 
+									<header class="major">
+										<h2>Docker compose</h2>
+									</header>
+									<p>
+										Compose is a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application's services.<br />
+										JSoagger is composed a least by following services:<br />
+										<ul>
+										 	<li>Database <br /></li>
+											<li>Web UI <br /></li>
+											<li>Command Line Interface <br /></li>									
+											<li>Backend server<br /></li>	
 										</ul>
-									</div>
+										We are going to use docker-compose to manage these services and run the application.
+									</p>																		
+							</section>
+							
+							<section>
+									<header>
+										<h1>Compose services </h1>
+									</header>							
+									<header class="major">
+										<h2>Create a compose script</h2>
+									</header>
+									<p>Create a file named 'compose-dev.yaml' and paste following script inside or download following file content <a>https://github.com/jsoagger/soagg-utils/blob/master/docker-compose/dev/compose-dev</a><p/>
+									<p class="markdown-code">
+version: '3.7'<br />
+services:<br />
+
+&nbsp;&nbsp;soagg-database:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;image: jsoagger/soagg-h2:latest<br />
+&nbsp;&nbsp;&nbsp;&nbsp;restart: always<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ports:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 1521:1521<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 81:81<br />
+    
+&nbsp;&nbsp;&nbsp;&nbsp;volumes:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- $DATA_LOCATION:/opt/h2-data<br />
+      
+&nbsp;&nbsp;&nbsp;&nbsp;environment:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DB_USER=$DB_USER<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DB_PASSWORD=$DB_PASSWORD<br />
+    
+&nbsp;&nbsp;&nbsp;&nbsp;networks:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- soagg_network  <br />
+      <br />  
+     <br />          
+&nbsp;&nbsp;soagg-foundation-srv:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;image: jsoagger/soagg-foundation-srv:latest<br />
+&nbsp;&nbsp;&nbsp;&nbsp;restart: on-failure<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ports:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 8080:8080<br />
+    
+&nbsp;&nbsp;&nbsp;&nbsp;volumes:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- $SPRING_CONFIG_LOCATION_SRV:/spring-config/:ro<br />
+      
+&nbsp;&nbsp;&nbsp;&nbsp;depends_on:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- soagg-database<br />
+          
+&nbsp;&nbsp;&nbsp;&nbsp;networks:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- soagg_network  <br />
+     <br />     
+<br />
+&nbsp;&nbsp;soagg-manager:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;image: jsoagger/soagg-manager:latest<br />
+&nbsp;&nbsp;&nbsp;&nbsp;container_name: soagg-manager_1<br />
+&nbsp;&nbsp;&nbsp;&nbsp;tty: true<br />
+&nbsp;&nbsp;&nbsp;&nbsp;stdin_open: true<br />
+&nbsp;&nbsp;&nbsp;&nbsp;environment:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- MANAGED_BACKEND_REST_URL=http://soagg-foundation-srv:8080/jsoagger<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;volumes:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- $SPRING_CONFIG_LOCATION_MANAGER:/spring-config/:ro<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;depends_on: <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- soagg-foundation-srv<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;networks:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- soagg_network  <br />
+<br />
+     <br />     
+&nbsp;&nbsp;soagg-webdev:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;image: jsoagger/soagg-webdev:latest<br />
+&nbsp;&nbsp;&nbsp;&nbsp;container_name: soagg-webdev<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ports:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- '3001:3000'<br />
+      
+&nbsp;&nbsp;&nbsp;&nbsp;environment:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- NODE_ENV=development<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CHOKIDAR_USEPOLLING=true<br />
+                 
+&nbsp;&nbsp;&nbsp;&nbsp;networks:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- soagg_network  <br />
+               <br />
+networks:<br />
+&nbsp;&nbsp;soagg_network:<br />
+&nbsp;&nbsp;&nbsp;driver: "bridge"  <br />
+
+
+									<p>Example of local folder structure of compose environment:</p>
+									<span class="image object">
+										<img src="images/setenv.png" alt="" width="50%"/>
+									</span>
+  										
+									</p>
+									<header class="major">
+										<h3>soagg-webdev service</h3>
+									</header>
+									<p>
+									'soagg-webdev' is a customized h2 database server for jsoagger. It includes initialization script for database schema initialization.<br />
+									H2 console can be browsed at following url: htt://localhost:81.<br />
+									</p>
+									H2 database needs following variables:
+									<ul>
+										<li>DATA_LOCATION: volume on the host where the database files will be saved.</li>
+									</ul>
+									
+									<p class="markdown-code">
+										> export DATA_LOCATION=./_configs/data<br />
+										> export DB_USER=sa<br />
+										> export DB_PASSWORD=
+									</p>	
+									
+									<header class="major">
+										<h3>soagg-foundation-srv service</h3>
+									</header>
+									<p>
+									'soagg-foundation-srv' is the jsoagger backend server. Based on springboot, it will start an embedded tomcat server on port 8080.<br />
+									The volume under SPRING_CONFIG_LOCATION_SRV should contain the spring boot configuration file named 'application.properties'. It will be copied inside the image on startup, if missing, it will fail.
+									</p>
+									<p class="markdown-code">
+										> export SPRING_CONFIG_LOCATION_SRV=./_configs/server
+									</p>
+									
+									<header class="major">
+										<h3>soagg-manager service</h3>
+									</header>
+									<p>
+									'soagg-manager' is the command line interface for managing jsoagger backend server. Built ith spring shell 2.0, it includes more than 60 commands.<br />
+									The volume under SPRING_CONFIG_LOCATION_MANAGER should contain the spring boot configuration file named 'application.properties'. It will be copied inside the image on startup, if missing, it will fail.									
+									</p>
+									<p class="markdown-code">
+										> export SPRING_CONFIG_LOCATION_MANAGER=./_configs/manager
+									</p>		
+							</section>
+							
+							<section>
+									<header>
+										<h1>Running </h1>
+									</header>							
+									<header class="major">
+										<h2>Start services with docker-compose</h2>
+									</header>
+									<p class="markdown-code">docker-compose -f compose-dev.yaml up<p/>
+									<p> Check services state by running 'docker ps", 4 services described above should be visible in result: </p>
+									<p class="markdown-code">
+										> docker ps<br />
+										jsoagger/soagg-manager:xxx<br />
+										jsoagger/soagg-foundation-srv:xxxx<br />
+										jsoagger/soagg-webdev:xxxx<br />
+										jsoagger/soagg-h2:xxxxx<br />
+									</p>
+																		
+									<header class="major">
+										<h2>Load foundation datas</h2>
+									</header>
+									<p>
+										Before testing the application, datas and views must be uploaded to database. JSoagger has a container image named 'jsoagger/soagg-foundation-data', which is a one shot docker image that will load data into running backend service.<br />
+										For that, run the following docker command:
+									<p/>
+									<p class="markdown-code">
+										> docker run --rm --name soagg-foundation-data --network=soagg_network -v $SPRING_CONFIG_LOCATION_MANAGER:/spring-config/ jsoagger/soagg-foundation-data:latest
+									</p>
+									
+									<header class="major">
+										<h2>Check loaded datas</h2>
+									</header>
+									<p class="markdown-code">
+										> docker exec -it xxxxx bash<br />
+										> [root@xxxxxxxxx /]# /runcli.sh<br />
+										> [http://soagg-foundation-srv:8080/jsoagger]> login epadmin epadmin<br />
+										> [http://soagg-foundation-srv:8080/jsoagger]> appversion-history<br />
+										<br />
+										{pageElements=2.0, pageNumber=0.0, hasNextPage=false, totalPages=1.0, pageSize=2.0, hasPreviousPage=false, totalElements=2.0, __http_code=200}
+{"moduleType":"CODE_VERSION","lastModifiedDate":"2019-09-07 10:58:43","moduleHash":"","lastModifiedBy":"epadmin","moduleName":"jsoagger-core-business-services","label":"jsoagger-core-business-services","version":0.0,"installationOrder":1.0,"moduleDescription":"-","moduleVersion":"1.0.0-SNAPSHOT","id":"NjU0MTppby5naXRodWIuanNvYWdnZXIuY29yZS5tb2RlbC5hcHAuQXBwVmVyc2lvbkhpc3Rvcnk","status":"INSTALLED"}
+{"moduleType":"DATA_PATCH","lastModifiedDate":"2019-09-07 11:01:24","moduleHash":"no_hash","lastModifiedBy":"epadmin","moduleName":"jsoagger-foundation-data","label":"jsoagger-foundation-data","version":1.0,"installationOrder":2.0,"moduleDescription":"Foundation data patch","moduleVersion":"0.0.1","id":"NjU3Mzppby5naXRodWIuanNvYWdnZXIuY29yZS5tb2RlbC5hcHAuQXBwVmVyc2lvbkhpc3Rvcnk","status":"INSTALLED"}
+										<br />
+									</p>
+									
+									<header class="major">
+										<h2>Browse</h2>
+									</header>
+									<p>Open a web browser and type url : http://localhost:3000/jsoagger</p>
 							</section>
 						</div>
 					</div>
@@ -126,3 +345,4 @@
 
 	</body>
 </html>
+

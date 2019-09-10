@@ -28,16 +28,86 @@
 									</ul>
 								</header>
 							
-							<section id="banner">
-									<div class="content">
-										<header>
-											<h1>Getting started with maven</h1>
-										</header>
-										<p>mvn archetype:generate -DarchetypeGroupId=io.github.jsoagger -DarchetypeArtifactId=jsoagger-fullstack-archetype  <br /> -DarchetypeVersion=LATEST -DgroupId=myprojectgroupid  -DartifactId=myproject</p>
-										<ul class="actions">
+							<section>
+									<header>
+											<h1>Prerequisites</h1>
+									</header>
+									<header class="major">
+										<h2>Java 11 or later</h2>
+									</header>
+									<p>JSoagger needs Java version 11 or later:</p>
+									<p class="markdown-code">
+											>	java -version <br />
+												openjdk version "11.0.1" 2018-10-16<br />
+												OpenJDK Runtime Environment 18.9 (build 11.0.1+13)<br />
+												OpenJDK 64-Bit Server VM 18.9 (build 11.0.1+13, mixed mode)<br />
+									</p>
+									<hr class="major" />
+																				
+									<header class="major">
+										<h2>Maven</h2>
+									</header>
+									<p>Download and install latest version of maven:</p>
+									<p class="markdown-code">
+										> mvn -version<br />
+										  Apache Maven 3.5.2<br /> 
+										  Default locale: fr_FR, platform encoding: UTF-8<br />
+									</p>
+									<hr class="major" />
+									
+									<header class="major">
+										<h2>Docker container</h2>
+									</header>
+									<p>Download and install latest version of docker desktop for your OS:</p>
+									<p class="markdown-code">
+												>	docker version<br />
+													Client: Docker Engine - Community<br />
+													Version:           19.03.1<br />
+	 												API version:       1.40<br />
+ 													Go version:        go1.12.5<br />
+ 													Git commit:        74b1e89<br />
+ 													Built:             Thu Jul 25 21:18:17 2019<br />
+ 													OS/Arch:           darwin/amd64<br />
+ 													Experimental:      false<br />
+									</p>									
+							</section>
+							
+							<section>
+									<header>
+											<h1>Create and build project</h1>
+									</header>
+									<header class="major">
+										<h2>Create project</h2>
+									</header>
+									<p>Create a new project with jsoagger maven archetype:<p/>
+									<p class="markdown-code">
+										> mvn archetype:generate -DarchetypeGroupId=io.github.jsoagger -DarchetypeArtifactId=jsoagger-fullstack-archetype <br />
+										  -DarchetypeVersion=LATEST -DgroupId=myprojectgroupid -DartifactId=myproject
+									</p>
+									<hr class="major" />
+																		
+									<header class="major">
+										<h2>Build</h2>
+									</header>
+									<p class="markdown-code">
+										> cd myproject<br />
+										> mvn clean install -P docker,h2
+									</p>
+									<hr class="major" />									
 
-										</ul>
-									</div>
+									<header class="major">
+										<h2>Run</h2>
+									</header>
+									<p class="markdown-code">
+										> docker-compose -f compose-dev up
+									</p>
+									<hr class="major" />									
+									
+									<header class="major">
+										<h2>Browse</h2>
+									</header>
+									<p>Open a web browser and type url : http://localhost:3000/jsoagger</p>
+									
 							</section>
 						</div>
 					</div>
@@ -59,7 +129,7 @@
 									<ul>
 										<li><a href="index.html">Home</a></li>
 										<li><a href="getting-started.html">Getting started</a></li>																						
-										<li><a href="index.html">Running demo application</a></li>																																
+										<li><a href="running-demo.html">Running demo application</a></li>																																
 										<li>
 											<span class="opener">Business modules</span>
 											<ul>
