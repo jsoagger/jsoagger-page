@@ -65,15 +65,15 @@
 									<p>Download and install latest version of docker desktop for your OS.</p>
 									<p>
 									<pre><code>
-												>	docker version<br />
-													Client: Docker Engine - Community<br />
-													Version:           19.03.1<br />
-	 												API version:       1.40<br />
- 													Go version:        go1.12.5<br />
- 													Git commit:        74b1e89<br />
- 													Built:             Thu Jul 25 21:18:17 2019<br />
- 													OS/Arch:           darwin/amd64<br />
- 													Experimental:      false<br />
+> docker version
+  Client: Docker Engine - Community
+  Version:           19.03.1
+  API version:       1.40
+  Go version:        go1.12.5
+  Git commit:        74b1e89
+  Built:             Thu Jul 25 21:18:17 2019
+  OS/Arch:           darwin/amd64
+  Experimental:      false
 									</code></pre>										   													
 									</p>									
 							</section>
@@ -86,18 +86,21 @@
 										<h2>Create project</h2>
 									</header>
 									<p>Create a new project with jsoagger maven archetype:<p/>
-									<p class="markdown-code">
-										> mvn archetype:generate -DarchetypeGroupId=io.github.jsoagger -DarchetypeArtifactId=jsoagger-fullstack-archetype <br />
-										  -DarchetypeVersion=LATEST -DgroupId=myprojectgroupid -DartifactId=myproject
+									<p>
+									<pre><code>
+> mvn archetype:generate -DarchetypeGroupId=io.github.jsoagger -DarchetypeArtifactId=jsoagger-fullstack-archetype -DarchetypeVersion=LATEST -DgroupId=myprojectgroupid -DartifactId=myproject
+									</code></pre>										   																							  
 									</p>
 									<hr class="major" />
 																		
 									<header class="major">
 										<h2>Build</h2>
 									</header>
-									<p class="markdown-code">
-										> cd myproject<br />
-										> mvn clean install -P docker,h2
+									<p>
+									<pre><code>
+> cd myproject
+> mvn clean install -P docker,h2
+									</code></pre>										   																							  										
 									</p>
 									<hr class="major" />									
 
