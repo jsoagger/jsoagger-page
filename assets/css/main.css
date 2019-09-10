@@ -3147,7 +3147,7 @@ input, select, textarea {
 		}
 
 		#sidebar > .inner {
-			padding: 2.22222em 2.22222em 2.44444em 2.22222em ;
+			padding: 0em 2.22222em 0em 2.22222em ;
 			position: relative;
 			width: 26em;
 		}
@@ -3632,4 +3632,11 @@ input, select, textarea {
 .mobile_solution{
     width: 400px;
     padding-right: 100px;
+}
+.markdown-code {
+    padding: 16px;
+    overflow: auto;
+    line-height: 1.45;
+    background-color: #f6f8fa;
+    border-radius: 3px;
 }

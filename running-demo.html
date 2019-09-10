@@ -22,7 +22,7 @@
 
 							<!-- Header -->
 								<header id="header">
-									<a href="running-demo.html" class="logo"><strong>JSOAGGER</strong> Running demo application</a>
+									<a href="running-demo.html" class="logo"> Running demo application</a>
 									<ul class="icons">
 										<li><a href="https://github.com/jsoagger" class="icon brands fa-github"><span class="label">Github</span></a></li>
 									</ul>
@@ -40,18 +40,21 @@
 										<li>Setup environment and variables<br />
 											<strong>export DB_USER=sa</strong><br />
 											<strong>export DB_PASSWORD=</strong><br />											
-											<strong>export DATA_LOCATION=/path/to/folder</strong><br />											
-											<strong>export SPRING_CONFIG_LOCATION_MANAGER=/path/to/a/folder</strong><br />																						
-											<strong>export SPRING_CONFIG_LOCATION_SRV=/path/to/a/folder</strong><br />																																	
+											<strong>export DATA_LOCATION=./_configs/data</strong><br />											
+											<strong>export SPRING_CONFIG_LOCATION_MANAGER=./_configs/manager</strong><br />																						
+											<strong>export SPRING_CONFIG_LOCATION_SRV=./_configs/server</strong><br />																																	
 										</li>
 										<br />
 										<li>Start services: <br/><strong>docker-compose -f compose-dev.yaml up</strong></li>										
 										<br />										
 										<li>Load foundation datas: <br/><strong>docker run --rm --name soagg-foundation-data --network=soagg_network -v $SPRING_CONFIG_LOCATION_MANAGER:/spring-config/ jsoagger/soagg-foundation-data:latest</strong></li>																				
 										<br />										
-										<li>Browse: <br/><a>http://localhost:3000/jsoagger</a></li>
+										<li>Browse: <br/><a>http://localhost:3000/jsoagger</a><br />
+										<a>http://localhost:81/</a></li>
 									</ul>
-									
+									<span class="image image.center object">
+										<img src="images/setenv.png" alt="" />
+									</span>
 							</section>
 							<section>
 									<header>
@@ -164,8 +167,9 @@ networks:<br />
 
 
 									<p>Example of local folder structure of compose environment:</p>
-									<span class="image object">
-										<img src="images/setenv.png" alt="" width="50%"/>
+									<span class="image image.center object">
+										<img src="images/setenv.png" alt="" />
+
 									</span>
   										
 									</p>
