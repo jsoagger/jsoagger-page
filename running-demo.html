@@ -47,10 +47,19 @@ export SPRING_CONFIG_LOCATION_SRV=./_configs/server
 										</pre></code>
 										</li>
 										<br />
-										<li>Start services: <br/><strong>docker-compose -f compose-dev.yaml up</strong></li>										
-										<br />										
-										<li>Load foundation datas: <br/><strong>docker run --rm --name soagg-foundation-data --network=soagg_network -v $SPRING_CONFIG_LOCATION_MANAGER:/spring-config/ jsoagger/soagg-foundation-data:latest</strong></li>																				
-										<br />										
+										
+										<li>Download compose-dev.yaml and start services: <br/>
+										<pre><code>
+docker-compose -f compose-dev.yaml up
+										</pre></code>
+										</li>										
+										<br />		
+																		
+										<li>Load foundation datas: <br/>
+										<pre><code>
+docker run --rm --name soagg-foundation-data --network=soagg_network -v $SPRING_CONFIG_LOCATION_MANAGER:/spring-config/ jsoagger/soagg-foundation-data:latest</pre></code></li>																				
+										<br />			
+																	
 										<li>Browse: <br/><a>http://localhost:3000/jsoagger</a><br />
 										<a>http://localhost:81/</a></li>
 									</ul>
