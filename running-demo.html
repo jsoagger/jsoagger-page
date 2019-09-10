@@ -191,10 +191,10 @@ networks:<br />
 									<header class="major">
 										<h2>Start services with docker-compose</h2>
 									</header>
-									<p class="markdown-code"><strong>docker-compose -f compose-dev.yaml up</strong><p/>
+									<p class="markdown-code">docker-compose -f compose-dev.yaml up<p/>
 									<p> Check services state by running 'docker ps", 4 services described above should be visible in result: </p>
 									<p class="markdown-code">
-										> <strong>docker ps</strong><br />
+										> docker ps<br />
 										jsoagger/soagg-manager:xxx<br />
 										jsoagger/soagg-foundation-srv:xxxx<br />
 										jsoagger/soagg-webdev:xxxx<br />
@@ -209,14 +209,22 @@ networks:<br />
 										For that, run the following docker command:
 									<p/>
 									<p class="markdown-code">
-										<strong>> docker run --rm --name soagg-foundation-data --network=soagg_network -v $SPRING_CONFIG_LOCATION_MANAGER:/spring-config/ jsoagger/soagg-foundation-data:latest</strong>
+										> docker run --rm --name soagg-foundation-data --network=soagg_network -v $SPRING_CONFIG_LOCATION_MANAGER:/spring-config/ jsoagger/soagg-foundation-data:latest
 									</p>
 									
 									<header class="major">
 										<h2>Check loaded datas</h2>
 									</header>
-									<p>
-									
+									<p class="markdown-code">
+										> docker exec -it xxxxx bash<br />
+										> [root@xxxxxxxxx /]# /runcli.sh<br />
+										> [http://soagg-foundation-srv:8080/jsoagger]> login epadmin epadmin<br />
+										> [http://soagg-foundation-srv:8080/jsoagger]> appversion-history<br />
+										<br />
+										{pageElements=2.0, pageNumber=0.0, hasNextPage=false, totalPages=1.0, pageSize=2.0, hasPreviousPage=false, totalElements=2.0, __http_code=200}
+{"moduleType":"CODE_VERSION","lastModifiedDate":"2019-09-07 10:58:43","moduleHash":"","lastModifiedBy":"epadmin","moduleName":"jsoagger-core-business-services","label":"jsoagger-core-business-services","version":0.0,"installationOrder":1.0,"moduleDescription":"-","moduleVersion":"1.0.0-SNAPSHOT","id":"NjU0MTppby5naXRodWIuanNvYWdnZXIuY29yZS5tb2RlbC5hcHAuQXBwVmVyc2lvbkhpc3Rvcnk","status":"INSTALLED"}
+{"moduleType":"DATA_PATCH","lastModifiedDate":"2019-09-07 11:01:24","moduleHash":"no_hash","lastModifiedBy":"epadmin","moduleName":"jsoagger-foundation-data","label":"jsoagger-foundation-data","version":1.0,"installationOrder":2.0,"moduleDescription":"Foundation data patch","moduleVersion":"0.0.1","id":"NjU3Mzppby5naXRodWIuanNvYWdnZXIuY29yZS5tb2RlbC5hcHAuQXBwVmVyc2lvbkhpc3Rvcnk","status":"INSTALLED"}
+										<br />
 									</p>
 									
 									<header class="major">
