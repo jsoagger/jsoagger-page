@@ -72,8 +72,8 @@ services:<br />
 &nbsp;&nbsp;&nbsp;&nbsp;image: jsoagger/soagg-h2:latest<br />
 &nbsp;&nbsp;&nbsp;&nbsp;restart: always<br />
 &nbsp;&nbsp;&nbsp;&nbsp;ports:<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 1521:1521<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 81:81<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 1521:1521<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 81:81<br />
     
 &nbsp;&nbsp;&nbsp;&nbsp;volumes:<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- $DATA_LOCATION:/opt/h2-data<br />
@@ -132,7 +132,7 @@ services:<br />
                  
 &nbsp;&nbsp;&nbsp;&nbsp;networks:<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- soagg_network  <br />
-                 
+               <br /><br />  
 networks:<br />
 &nbsp;&nbsp;soagg_network:<br />
 &nbsp;&nbsp;&nbsp;driver: "bridge"  <br />
