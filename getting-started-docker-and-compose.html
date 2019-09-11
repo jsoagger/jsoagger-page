@@ -55,7 +55,38 @@
 > docker network rm soagg_network
 									</code></pre>
 									</p>
+									<hr class="major" />
 
+									<header class="major">
+										<h2>Container management</h2>
+									</header>
+									<h3>List running containers</h3>
+									<p>
+									<pre><code>
+> docker container ls 
+									</code></pre>
+									</p>
+
+									<h3>Kill a running container</h3>
+									<p>
+									<pre><code>
+> docker container kill container_id
+									</code></pre>
+									</p>
+
+									<h3>Stop a running container</h3>
+									<p>
+									<pre><code>
+> docker container stop container_id
+									</code></pre>
+									</p>
+									
+									<h3>Connect to a running container</h3>
+									<p>
+									<pre><code>
+> docker exec -it container_id bash
+									</code></pre>
+									</p>
 
 					
 									<header class="major">
