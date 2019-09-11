@@ -56,6 +56,19 @@
 											<img src="images/cli-sfload.png" alt="multiplatform UI" width="60%"/>
 									</div>
 									<br /><br />
+									
+									<header class="major">
+										<h2>Single load command</h2>
+									</header>
+									<p>
+									Below is example of loading data individually.<br />
+									Below command will ask the server to load business rules contained in the csv file given in argument.
+									</p>
+									<p><pre><code>
+> sfload --type manageBusinessRule --input-file-path  local-file:/foundation/cdata/base-business-rules.csv 
+--attachments-path local-folder:/foundation/cdata/businessRules									
+									</code></pre>
+									</p>									
 												
 									<header class="major">
 										<h2>Scripting</h2>
@@ -134,20 +147,6 @@ sfscript-set-data-patch-install-status installed local-file:/foundation/data-pat
 logout
 										
 									</p></code></pre>
-									
-									
-									<header class="major">
-										<h2>Single load command</h2>
-									</header>
-									<p>
-									Below is example of loading data individually.<br />
-									Below command will ask the server to load business rules contained in the csv file given in argument.
-									</p>
-									<p><pre><code>
-> sfload --type manageBusinessRule --input-file-path  local-file:/foundation/cdata/base-business-rules.csv 
---attachments-path local-folder:/foundation/cdata/businessRules									
-									</code></pre>
-									</p>
 								</section>
 						</div>
 					</div>
