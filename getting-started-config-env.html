@@ -96,6 +96,39 @@
 									As from Java 11, JavaFX have been removed from JDK, it must be download manually if you do not use integration tool like maven.<br />
 									Following instructions (<a>https://openjfx.io/openjfx-docs/#install-javafx</a>) describes how to download and install JavaFX runtime.</p>
 									<p>If you are working with tools like maven, runtime dependencies are loaded automatically.</p>
+									<hr class="major" />
+																		
+									<header class="major">
+										<h2>H2 database</h2>
+									</header>
+									<p>Pull jsoagger h2 database from docker hub. This version of h2 includes initialisation script and other routines for jsoagger.</p>
+									<p>
+									<pre><code>
+> docker pull jsoagger/soagg-h2:latest
+									</code></pre>										   													
+									</p>	
+									<hr class="major" />
+									
+									<header class="major">
+										<h2>Mysql database</h2>
+									</header>
+									<p>Pull jsoagger Mysql database from docker hub if you wish to work with mysql. This version of mysql includes initialisation script and other routines for jsoagger.</p>
+									<p>
+									<pre><code>
+> docker pull jsoagger/soagg-mysql:latest
+									</code></pre>										   													
+									</p>
+									<hr class="major" />
+									
+									<header class="major">
+										<h2>SMTP Server</h2>
+									</header>
+									<p>If you wish to simulate email sending during development phase, install jsoagger fake smpt server. It will write sent email in a local folder.</p>
+									<p>
+									<pre><code>
+> docker pull jsoagger/soagg-fakesmtp:latest
+									</code></pre>										   													
+									</p>
 							</section>
 						</div>
 					</div>
