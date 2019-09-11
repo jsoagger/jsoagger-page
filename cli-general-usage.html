@@ -66,7 +66,9 @@
 									Pull the image from docker hub or build image locally and run it. Manager must be on same network as the server it want to manage.
 										<pre><code>					
 > docker pull jsoagger/soagg-manager:latest										
-> docker run -d --rm --network=soagg_network --name soagg_manager -e MANAGED_BACKEND_REST_URL='http://soagg-foundation-srv:8080/jsoagger' -v $CONFIG_LOCATION:/spring-config/ jsoagger/soagg-manager:latest
+> docker run -d --rm --network=soagg_network --name soagg_manager 
+-e MANAGED_BACKEND_REST_URL='http://soagg-foundation-srv:8080/jsoagger'
+ -v $CONFIG_LOCATION:/spring-config/ jsoagger/soagg-manager:latest
 										</code></pre>
 									</p>
 									
