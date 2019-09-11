@@ -90,10 +90,7 @@ login epadmin epadmin
 sfscript-create-data-patch local-file:/foundation/data-patch-version.txt
 
 
-sfload --type manageBusinessRule --input-file-path  local-file:/foundation/cdata/base-business-rules.csv --attachments-path local-folder:/foundation/cdata/businessRules
 sfload --type manageContentFormat --input-file-path  local-file:/foundation/cdata/contentFormat.csv
-sfload --type manageFolderTemplate --input-file-path  local-file:/foundation/cdata/folderTemplates.csv --attachments-path local-folder:/foundation/cdata/folderTemplates
-sfload --type manageLifecycle --input-file-path  local-file:/foundation/cdata/lifecycles.csv --attachments-path local-folder:/foundation/cdata/lifecycles
 
 sfload --type manageType --input-file-path  local-file:/foundation/cdata/types.csv
 sfload --type manageLinksConstraints --input-file-path  local-file:/foundation/cdata/link-constraints.csv
@@ -108,11 +105,14 @@ sfload --type manageListValues --input-file-path  local-file:/foundation/cdata/l
 sfload --type manageStandardEntity --input-file-path  local-file:/foundation/cdata/permissions.csv
 sfload --type manageStandardEntity --input-file-path  local-file:/foundation/cdata/rolePermissions.csv
 
-sfload --type manageEnTemplate --input-file-path  local-file:/foundation/cdata/mailTemplates.csv --attachments-path local-folder:/foundation/cdata/mailTemplates
 
-sfload --type manageViewDef --input-file-path  local-file:/foundation/cdata/views/loginFormViewDefinition.csv --attachments-path local-folder:/foundation/cdata/views/login
-sfload --type manageViewDef --input-file-path  local-file:/foundation/cdata/views/lostPassFormViewDefinition.csv --attachments-path local-folder:/foundation/cdata/views/lostpassword
-sfload --type manageViewDef --input-file-path  local-file:/foundation/cdata/views/registerUserFormViewDefinition.csv --attachments-path local-folder:/foundation/cdata/views/register
+sfload --type manageViewDef --input-file-path  local-file:/foundation/cdata/views/loginFormViewDefinition.csv 
+	--attachments-path local-folder:/foundation/cdata/views/login
+sfload --type manageViewDef --input-file-path  local-file:/foundation/cdata/views/lostPassFormViewDefinition.csv 
+--attachments-path local-folder:/foundation/cdata/views/lostpassword
+
+sfload --type manageViewDef --input-file-path  local-file:/foundation/cdata/views/registerUserFormViewDefinition.csv 
+--attachments-path local-folder:/foundation/cdata/views/register
 
 sfscript --script-file local-file:/foundation/cscript/$database/postInstallVersion.sql
 
