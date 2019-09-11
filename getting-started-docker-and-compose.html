@@ -138,42 +138,30 @@
 							
 							<section>
 									<header>
-											<h1>Docker compose</h1>
+										<h1>Docker compose utils</h1>
 									</header>
-									<header class="major">
-										<h2>Create project</h2>
-									</header>
-									<p>Create a new project with jsoagger maven archetype<p/>
+									
+									<h3>Create and start containers</h3>
 									<p>
 									<pre><code>
-> mvn archetype:generate -DarchetypeGroupId=io.github.jsoagger -DarchetypeArtifactId=jsoagger-fullstack-archetype
- -DarchetypeVersion=LATEST -DgroupId=myprojectgroupid -DartifactId=myproject
-									</code></pre>										   																							  
-									</p>
-									<hr class="major" />
-																		
-									<header class="major">
-										<h2>Build</h2>
-									</header>
-									<pre><code>
-> cd myproject
-> mvn clean install -P docker,h2
-									</code></pre>										   																							  										
-									<hr class="major" />									
+> docker-compose -f compose-file.yaml up
+									</code></pre>
+									</p>								
 
-									<header class="major">
-										<h2>Run</h2>
-									</header>
+									<h3>Stop containers</h3>
+									<p>
 									<pre><code>
-> docker-compose -f compose-dev.yaml up
-									</code></pre>																		   																							  																			
-									<hr class="major" />									
-									
-									<header class="major">
-										<h2>Browse</h2>
-									</header>
-									<p>Open a web browser and type url : <a>http://localhost:3000/jsoagger</a></p>
-									
+> docker-compose -f compose-file.yaml down
+									</code></pre>
+									</p>								
+
+									<h3>Create containers</h3>
+									<p>
+									<pre><code>
+> docker-compose -f compose-file.yaml up --no-start
+									</code></pre>
+									</p>								
+
 							</section>
 						</div>
 					</div>
