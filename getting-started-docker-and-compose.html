@@ -63,62 +63,77 @@
 									<h3>List running containers</h3>
 									<p>
 									<pre><code>
-> docker container ls 
+> docker container ls
+> docker ps 
 									</code></pre>
 									</p>
 
-									<h3>Kill a running container</h3>
+									<h3>Kill a container</h3>
 									<p>
 									<pre><code>
 > docker container kill container_id
 									</code></pre>
 									</p>
 
-									<h3>Stop a running container</h3>
+									<h3>Stop a container</h3>
 									<p>
 									<pre><code>
 > docker container stop container_id
 									</code></pre>
 									</p>
 									
-									<h3>Connect to a running container</h3>
+									<h3>Connect to a container</h3>
 									<p>
 									<pre><code>
 > docker exec -it container_id bash
 									</code></pre>
 									</p>
 
-					
-									<header class="major">
-										<h2>Maven</h2>
-									</header>
-									<p>Download and install latest version of maven.</p>
+									<h3>Copy file from host to running container</h3>
 									<p>
 									<pre><code>
-> mvn -version
-  Apache Maven 3.5.2
-  Default locale: fr_FR, platform encoding: UTF-8
-									</code></pre>										  
+> docker cp containerId:/file/path/within/container /host/path/target
+									</code></pre>
+									</p>
+
+									<h3>View container logs</h3>
+									<p>
+									<pre><code>
+> docker logs containerId
+									</code></pre>
 									</p>
 									<hr class="major" />
-									
+
 									<header class="major">
-										<h2>Docker container</h2>
+										<h2>Images management</h2>
 									</header>
-									<p>Download and install latest version of docker desktop for your OS <a>https://www.docker.com</a>.</p>
+									<h3>List local pulled images</h3>
 									<p>
 									<pre><code>
-> docker version
-  Client: Docker Engine - Community
-  Version:           19.03.1
-  API version:       1.40
-  Go version:        go1.12.5
-  Git commit:        74b1e89
-  Built:             Thu Jul 25 21:18:17 2019
-  OS/Arch:           darwin/amd64
-  Experimental:      false
-									</code></pre>										   													
-									</p>									
+> docker images
+									</code></pre>
+									</p>
+
+									<h3>Pull image from docker hub</h3>
+									<p>
+									<pre><code>
+> docker pull repositoryname/tag
+									</code></pre>
+									</p>
+
+									<h3>Delete all downloaded images</h3>
+									<p>
+									<pre><code>
+> docker rmi $(docker images -q) --force
+									</code></pre>
+									</p>
+
+									<h3>Delete an image</h3>
+									<p>
+									<pre><code>
+> docker image rm imageid
+									</code></pre>
+									</p>								
 							</section>
 							
 							<section>
