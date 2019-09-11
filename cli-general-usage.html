@@ -35,8 +35,36 @@
 											<h1>Soagg manager</h1>
 											<p>Spring shell 2.0 CLI</p>
 										</header>
+										<p>
+											Soagg manager is an interactive terminal console built on top of spring shell when user can enter textual command to interact with backed server.
+										</p>
+										<p>
+											Please visit spring shell website to haven more information about it <a>https://docs.spring.io/spring-shell/docs/2.0.0.RELEASE/reference/htmlsingle/</a>
+										</p>
 									</div>
 								</section>
+								
+								<section>
+									<header>
+										<h2>Running the manager</h2>
+									</header>
+									<p>
+										There are 2 ways for running the manager:
+										<ul>
+											<li>
+												If you have started containers with docker compose, then, connect to it vi docker interactive command. Following command will connect to the running container,
+												execute a shell and will run the script 'runcli.sh' which is the soagg-manager script runner.
+												<pre><code>
+> docker ps												
+> docker -it exec container_id bash	/runcli.sh												
+												</code></pre>
+											</li>
+										</ul>
+									</p>
+									<header class="major">
+										<h2>Create project</h2>
+									</header>
+								</section>									
 						</div>
 					</div>
 
