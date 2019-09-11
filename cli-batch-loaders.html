@@ -22,7 +22,7 @@
 
 							<!-- Header -->
 								<header id="header">
-									<a href="index.html" class="logo"> Command line interface - General usage</a>
+									<a href="index.html" class="logo"> Command line interface - Batch loader</a>
 									<ul class="icons">
 										<li><a href="https://github.com/jsoagger" class="icon brands fa-github"><span class="label">Github</span></a></li>
 									</ul>
@@ -33,9 +33,96 @@
 									<div class="content">
 										<header>
 											<h1>Soagg manager</h1>
-											<p>Spring shell 2.0 CLI</p>
+											<p>Load datas - Spring shell 2.0 CLI</p>
 										</header>
+										<p>
+										Each entity in Jsoagger server is shipped with an  interface and command for batch loading datas on it. JSoagger batch loader is built on top of
+										Spring bacth framework. 
+										</p>
+										<p>
+											Soagg manager supports both executing scripts and executing single batch load command.
+										</p>
 									</div>
+								</section>
+								
+								<section>					
+									<header class="major">
+										<h2>Scripting</h2>
+									</header>
+									<p>
+									Below is example of batch script used to load foundattion datas into remote backend server.<br />
+									<ul>
+										<li>Each line is executed by the shell and an http call is done to send command and datas in the server side. </li>
+										<li>Then a batch job is executed in the server side</li>
+										<li>If the job fails, then script will also fail</li>
+										<li>If one command fails, then script will also fail</li>										
+									</ul>
+									
+									</p>
+									<p><pre><code>
+ping
+
+# GENERAL SCRIPT CONFIGURATION
+set-script-exit-on-file-error true
+set-script-exit-on-rest-error true
+
+# Fail if there is a pending installation in database, with same name and version
+# Database must be reinitialized because SQL script will is not recoverable.
+set-script-fail-on-pending-installation false
+
+
+# CHECK VERSION AND EXIT IF ALREADY INSTALLED
+# will doc system.exit if already installed
+# IF the status is FAILED, the process can re-runed
+# And will update the current version status
+sfscript-check-data-patch-version local-file:/foundation/data-patch-version.txt
+
+
+# pre-init
+sfscript --script-file local-file:/foundation/cscript/$database/preInstallVersion.sql
+
+
+# load datas
+login epadmin epadmin
+
+
+# TODO Add notification in server side on the status of datapath intallation change
+sfscript-create-data-patch local-file:/foundation/data-patch-version.txt
+
+
+sfload --type manageBusinessRule --input-file-path  local-file:/foundation/cdata/base-business-rules.csv --attachments-path local-folder:/foundation/cdata/businessRules
+sfload --type manageContentFormat --input-file-path  local-file:/foundation/cdata/contentFormat.csv
+sfload --type manageFolderTemplate --input-file-path  local-file:/foundation/cdata/folderTemplates.csv --attachments-path local-folder:/foundation/cdata/folderTemplates
+sfload --type manageLifecycle --input-file-path  local-file:/foundation/cdata/lifecycles.csv --attachments-path local-folder:/foundation/cdata/lifecycles
+
+sfload --type manageType --input-file-path  local-file:/foundation/cdata/types.csv
+sfload --type manageLinksConstraints --input-file-path  local-file:/foundation/cdata/link-constraints.csv
+
+sfload --job installApplicationContainer --input-file-path  local-file:/foundation/cdata/applicationContainer.csv
+sfload --type installEpAdmin --input-file-path  local-file:/foundation/cdata/party/epadmin.csv
+
+sfload --type manageListValues --input-file-path  local-file:/foundation/cdata/listvalues.csv
+sfload --type manageListValues --input-file-path  local-file:/foundation/cdata/listvalues/preferencesListvalues.csv
+sfload --type manageListValues --input-file-path  local-file:/foundation/cdata/listvalues/documentListValues.csv
+sfload --type manageListValues --input-file-path  local-file:/foundation/cdata/listvalues/elementListValues.csv
+sfload --type manageStandardEntity --input-file-path  local-file:/foundation/cdata/permissions.csv
+sfload --type manageStandardEntity --input-file-path  local-file:/foundation/cdata/rolePermissions.csv
+
+sfload --type manageEnTemplate --input-file-path  local-file:/foundation/cdata/mailTemplates.csv --attachments-path local-folder:/foundation/cdata/mailTemplates
+
+sfload --type manageViewDef --input-file-path  local-file:/foundation/cdata/views/loginFormViewDefinition.csv --attachments-path local-folder:/foundation/cdata/views/login
+sfload --type manageViewDef --input-file-path  local-file:/foundation/cdata/views/lostPassFormViewDefinition.csv --attachments-path local-folder:/foundation/cdata/views/lostpassword
+sfload --type manageViewDef --input-file-path  local-file:/foundation/cdata/views/registerUserFormViewDefinition.csv --attachments-path local-folder:/foundation/cdata/views/register
+
+sfscript --script-file local-file:/foundation/cscript/$database/postInstallVersion.sql
+
+# end installation
+# add notification in server side business on the status
+# of datapath intallation change
+sfscript-set-data-patch-install-status installed local-file:/foundation/data-patch-version.txt
+logout
+										
+									</p></code></pre>
 								</section>
 						</div>
 					</div>
