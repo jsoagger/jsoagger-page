@@ -39,6 +39,21 @@
 						
 							 <!-- Section -->
 							<section>
+									<header class="major">
+										<h2>Soagg manager commands</h2>
+									</header>
+									<p></p>
+									
+									<header class="major">
+										<h2>Web login</h2>
+									</header>
+									<p></p>
+									
+									
+									<header class="major">
+										<h2>Apache Shiro auth</h2>
+									</header>
+									<p></p>
 
 							</section>
 						</div>
@@ -60,34 +75,5 @@
 
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
-		
-		<script type="text/javascript">
-
-	// Menu.
-		var $menu = $('#menu'),
-			$menu_openers = $menu.children('ul').find('.opener');
-
-		// Openers.
-			$menu_openers.each(function() {
-
-				var $this = $(this);
-
-				$this.on('click', function(event) {
-
-					// Prevent default.
-						event.preventDefault();
-
-					// Toggle.
-						$menu_openers.not($this).removeClass('active');
-						$this.toggleClass('active');
-
-					// Trigger resize (sidebar lock).
-						$window.triggerHandler('resize.sidebar-lock');
-
-				});
-
-			});
-
-		</script>
 	</body>
 </html>
