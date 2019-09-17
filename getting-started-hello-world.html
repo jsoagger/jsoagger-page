@@ -22,7 +22,7 @@
 
 							<!-- Header -->
 								<header id="header">
-									<a href="getting-started.html" class="logo"> Getting started - Hello world</a>
+									<a href="getting-started.html" class="logo"> Get started - Hello world</a>
 									<ul class="icons">
 										<li><a href="https://github.com/jsoagger" class="icon brands fa-github"><span class="label">Github</span></a></li>
 									</ul>
@@ -45,7 +45,7 @@
 									<p>
 									<pre><code>
 > mvn archetype:generate -DarchetypeGroupId=io.github.jsoagger -DarchetypeArtifactId=jsoagger-fullstack-archetype
- -DarchetypeVersion=LATEST -DgroupId=myprojectgroupid -DartifactId=myproject
+ -DarchetypeVersion=LATEST -DartifactId=helloWorld
 									</code></pre>										   																							  
 									</p>
 
@@ -54,8 +54,9 @@
 										<h2>Build</h2>
 									</header>
 									<pre><code>
-> cd myproject
-> mvn clean install -P docker,h2
+> cd helloWorld
+> mvn clean install -P install-reactapp,npm-install
+> mvn clean install -P h2,docker
 									</code></pre>										   																							  										
 
 									<hr class="major" />
@@ -91,13 +92,21 @@
 									<header class="major">
 										<h2>Run the desktop client</h2>
 									</header>
-									<p>Todo</a></p>
+									<p>
+									<pre><code>
+> java -jar desktop/target/starter-desktop-1.0-SNAPSHOT.jar --jsoagger.client.mode=desktop									
+									</code></pre>																		   																							  																			
+									</p>
 
 									
 									<header class="major">
 										<h2>Run the mobile client</h2>
 									</header>
-									<p>Todo</a></p>
+									<p>
+									<pre><code>									
+> java -jar desktop/target/starter-desktop-1.0-SNAPSHOT.jar --jsoagger.client.mode=simul_mobile									
+									</code></pre>																		   																							  																			
+									</p>
 																			
 							</section>
 						</div>
