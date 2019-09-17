@@ -86,9 +86,21 @@
 									<header class="major">
 										<h2>Connect to command line interface</h2>
 									</header>
-									<p>TODO</p>
-
+									<p>
+									<p>Replace 'manager_container_id' by de identifier of the manager image displayed from docker ps<p>
+									<pre><code>									
+> docker ps
+> docker exec -it _app-manager_container_id bash /runcli.sh									
+									</code></pre>
+									</p>
 									
+									<p>
+									Login in manager and type help.
+									</p>
+									<pre><code>									
+> login epadmin epadmin
+[#http://localhost:8080/jsoagger] > help									
+									</code></pre>									
 									<header class="major">
 										<h2>Run the desktop client</h2>
 									</header>
