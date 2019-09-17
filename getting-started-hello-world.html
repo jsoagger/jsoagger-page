@@ -28,8 +28,6 @@
 									</ul>
 								</header>
 							
-							
-							
 							<section>
 									<header>
 										<h1>Create and build a project</h1>
@@ -52,11 +50,13 @@
 									<header class="major">
 										<h2>Build</h2>
 									</header>
+									<p>									
 									<pre><code>
 > cd helloWorld
 > mvn clean install -P install-reactapp,npm-install
 > mvn clean install -P h2,docker
 									</code></pre>										   																							  										
+									</p>
 
 									<hr class="major" />
 									<header>
@@ -65,10 +65,11 @@
 									<header class="major">
 										<h2>Compose up!</h2>
 									</header>
+									<p>
 									<pre><code>
 > docker-compose -f compose-dev.yaml up
 									</code></pre>																		   																							  																			
-																		
+									</p>								
 									
 									<header class="major">
 										<h2>Browse web ui </h2>
@@ -86,18 +87,21 @@
 										<h2>Connect to manager CLI</h2>
 									</header>
 									<p>Replace 'manager_container_id' by de identifier of the manager image displayed from docker ps<p>
+									<p>									
 									<pre><code>									
 > docker ps
 > docker exec -it _app-manager_container_id bash /runcli.sh									
 									</code></pre>
-																		
-									<p>
-									Login in manager and type help.
 									</p>
+																	
+									<p>Login in manager and type help.</p>
+									<p>									
 									<pre><code>									
 > login epadmin epadmin
 [#http://localhost:8080/jsoagger] > help									
 									</code></pre>		
+									</p>
+									
 									<div>
 										<img src="images/jsoagger-cli.png" alt="JSoagger quick start home" width="50%"/>
 									</div>
@@ -106,6 +110,7 @@
 									<header class="major">
 										<h2>Run the desktop client</h2>
 									</header>
+									<p>									
 									<pre><code>
 > java -jar desktop/target/desktop-1.0-SNAPSHOT.jar --jsoagger.client.mode=desktop																		
 									</code></pre>																		   																							  																			
@@ -117,7 +122,8 @@
 									<pre><code>									
 > java -jar desktop/target/desktop-1.0-SNAPSHOT.jar --jsoagger.client.mode=simul_mobile									
 									</code></pre>																		   																							  																			
-																			
+									</p>
+																		
 							</section>
 						</div>
 					</div>
