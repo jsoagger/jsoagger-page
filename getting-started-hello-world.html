@@ -84,7 +84,48 @@
 									</div>
 									</p>
 									
+									<header class="major">
+										<h2>Connect to manager CLI</h2>
+									</header>
+									<p>Replace 'manager_container_id' by de identifier of the manager image displayed from docker ps<p>
+									<p>									
+									<pre><code>									
+> docker ps
+> docker exec -it _app-manager_container_id bash /runcli.sh									
+									</code></pre>
+									</p>
+																	
+									<p>Login in manager and type help.</p>
+									<p>									
+									<pre><code>									
+> login epadmin epadmin
+[#http://localhost:8080/jsoagger] > help									
+									</code></pre>		
+									</p>
+													
+									<p>																		
+									<div>
+										<img src="images/jsoagger-cli.png" alt="JSoagger cli" width="30%"/>
+									</div>
+									</p>
+																									
+									<header class="major">
+										<h2>Run the desktop client</h2>
+									</header>
+									<p>									
+									<pre><code>
+> java -jar desktop/target/desktop-1.0-SNAPSHOT.jar --jsoagger.client.mode=desktop																		
+									</code></pre>																		   																							  																			
+									</p>
 									
+									<header class="major">
+										<h2>Run the mobile client</h2>
+									</header>
+									<p>									
+									<pre><code>									
+> java -jar desktop/target/desktop-1.0-SNAPSHOT.jar --jsoagger.client.mode=simul_mobile									
+									</code></pre>																		   																							  																			
+									</p>					
 							</section>
 						</div>
 					</div>
