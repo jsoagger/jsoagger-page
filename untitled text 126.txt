@@ -1,0 +1,2 @@
+#TYPE_SET_LIFECYCLE|typeoid|lifecyclemasternumber|initialstate
+TYPE_SET_LIFECYCLE|7503|20190923151229928||
