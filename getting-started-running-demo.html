@@ -159,10 +159,12 @@ networks:
 																		
 										<li>Load foundation datas: <br/><br/>
 										<pre><code>
-docker run --rm --name soagg-foundation-data --network=docker-compose_soagg_network <br />-v $SPRING_CONFIG_LOCATION_MANAGER:/spring-config/<br /> jsoagger/soagg-foundation-data:latest</pre></code></li>
+docker run --rm --name soagg-foundation-data --network=docker-compose_soagg_network \
+-v $SPRING_CONFIG_LOCATION_MANAGER:/spring-config/\
+jsoagger/soagg-foundation-data:latest</pre></code></li>
 										<br />			
 																	
-										<li>Browse: <br/><br/><a>http://localhost:3001/jsoagger</a><br />
+										<li>Browse: <br/><br/><a>http://localhost:3000/#/c/login</a><br />
 										<a>http://localhost:81/</a></li>
 
 										<p>
